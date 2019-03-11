@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>canvas画图的使用总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta name="keywords" content="canvas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="canvas画图的使用总结">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/canvas画图的使用总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-11T14:16:02.905Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="canvas画图的使用总结">
+<meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910010110210">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-canvas画图的使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/canvas画图的使用总结/" class="article-date">
+  <time datetime="2019-03-11T14:15:24.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      canvas画图的使用总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br></pre></td><td class="code"><pre><span class="line">var c = $(&quot;#myCanvas&quot;),ctx = c.getContext(&quot;2d&quot;);</span><br><span class="line">ctx.clearRect(0,0,mW,mH);</span><br><span class="line">ctx.beginPath(); //起始一条路径，或重置当前路径</span><br><span class="line">ctx.lineWidth = 10;</span><br><span class="line">ctx.stokeStyle = &quot;#000&quot;; </span><br><span class="line">//var gradient = ctx.createLinearGradient(0,0,90,0); //(X0,Y0,X1,Y1)</span><br><span class="line">//gradient.addColorStop(0, #000);</span><br><span class="line">//gradient.addColorStop(1, #fff);</span><br><span class="line">//ctx.stokeStyle = gradient;</span><br><span class="line">//图片填充 pattern</span><br><span class="line">//var img=document.getElementById(&quot;lamp&quot;);</span><br><span class="line">//var pat=ctx.createPattern(img,&quot;repeat&quot;); //repeat|repeat-x|repeat-y|no-repeat</span><br><span class="line">//ctx.stokeStyle = pat;</span><br><span class="line">//放射状、圆形渐变</span><br><span class="line">//var grd=ctx.createRadialGradient(75,50,5,90,60,100);//(x0,y0,r1,x1,y1,r2);渐变开始的圆的坐标及半径</span><br><span class="line">//grd.addColorStop(0,&quot;red&quot;); //规定 gradient 对象中的颜色和位置。 0-1的位置均可以设置</span><br><span class="line">//grd.addColorStop(1,&quot;white&quot;);</span><br><span class="line">//ctx.fillStyle=grd;</span><br><span class="line"></span><br><span class="line">//canvas 路径</span><br><span class="line">//ctx.fill(); 填充当前绘图（路径） ctx.stoke(); 绘制已定义的路径</span><br><span class="line">//ctx.moveTo(); 把路径移动到画布的指定点，不创建线条。  ctx.lineTo();新添加一个点，然后再画布中创建从该点到最后指定点的线条</span><br><span class="line">//ctx.clip();从原始画布中剪切任意形状和尺寸.一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内（不能访问画布上的其他区域）。您也可以在使用 clip() 方法前通过使用 save() 方法对当前画布区域进行保存，并在以后的任意时间对其进行恢复（通过 restore() 方法）。</span><br><span class="line">//ctx.arcTo(150,20,150,70,50); // 创建弧 (X0,Y0,X1,Y1,r);</span><br><span class="line">//ctx.isPointInPath(x,y) 方法返回 true，如果指定的点位于当前路径中；否则返回 false</span><br><span class="line"></span><br><span class="line">//canvas线条样式</span><br><span class="line">//ctx.lineCap=&quot;round&quot;; butt/round/square</span><br><span class="line">//ctx.lineJoin=&quot;round&quot;; //miter/bevel/round</span><br><span class="line">//ctx.lineWidth=10; ctx.miterLimit=5; //折角最大长度</span><br><span class="line"></span><br><span class="line">//canvas矩形</span><br><span class="line">//ctx.rect(0,0,200,200);   ctx.fillRect(0,0,200,200); </span><br><span class="line">//ctx.stokeRect(20,20,150,100); //rect       ctx.clearRect(20,20,100,50); //使其中一部分显示空白</span><br><span class="line"></span><br><span class="line">//canvas文本</span><br><span class="line">//ctx.font=&quot;10px Arial&quot;;</span><br><span class="line">//ctx.textAlign=&quot;start|end|left|right|end&quot;; </span><br><span class="line">//ctx.textBaseline=&quot;alphabetic|top|hanging|middle|ideographic|bottom&quot;;</span><br><span class="line">//measureText() 方法返回包含一个对象，该对象包含以像素计的指定字体宽度。提示：如果您需要在文本向画布输出之前，就了解文本的宽度，那么请使用该方法。var txt=&quot;Hello World&quot; </span><br><span class="line">//ctx.fillText(&quot;width:&quot; + ctx.measureText(txt).width,10,50)</span><br><span class="line">//ctx.strokeText(&quot;Hello World!&quot;,10,50);</span><br><span class="line">//ctx.fillText(&quot;w3school.com.cn&quot;,10,90);</span><br><span class="line"></span><br><span class="line">//canvas drawImage</span><br><span class="line">//ctx.drawImage(img,x,y);</span><br><span class="line">//ctx.drawImage(img,x,y,width,height);</span><br><span class="line">//ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);  剪切,要使用的</span><br><span class="line">//视频使用在画布之上</span><br><span class="line">//var v=document.getElementById(&quot;video1&quot;);</span><br><span class="line">//var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">//ctx=c.getContext(&apos;2d&apos;);</span><br><span class="line">//v.addEventListener(&apos;play&apos;,function() &#123;var i=window.setInterval(function() </span><br><span class="line">//&#123;ctx.drawImage(v,0,0,270,135)&#125;,20);&#125;,false);</span><br><span class="line">//v.addEventListener(&apos;pause&apos;,function() &#123;window.clearInterval(i);&#125;,false);</span><br><span class="line">//v.addEventListener(&apos;ended&apos;,function() &#123;clearInterval(i);&#125;,false);</span><br><span class="line"></span><br><span class="line">//canvas 合成</span><br><span class="line">//ctx.gloabalAlpha = number;  globalAlpha 属性设置或返回绘图的当前透明值（alpha 或 transparency）。介于 0.0（完全透明） 与 1.0（不透明） 之间的数字。</span><br><span class="line">//globalCompositeOperation 属性设置或返回如何将一个源（新的）图像绘制到目标（已有）的图像上。属性值多个</span><br><span class="line">//source-over | source-atop | source-in | source-out | destination-over | destination-atop | destination-in | destination-out | lighter | copy | xor</span><br><span class="line"></span><br><span class="line">//canvas像素</span><br><span class="line">//var imgData=ctx.createImageData(width,height);</span><br><span class="line">//imgData.data[4]=0; imgData.data[5]=255; imgData.data[6]=0; imgData.data[7]=255;  //R\G\B\A</span><br><span class="line">//var imgData=ctx.createImageData(imageData); //与另一个尺寸相同</span><br><span class="line">//var imgData=ctx.getImageData(10,10,50,50); //拷贝</span><br><span class="line">//ctx.putImageData(imgData,10,70); //放置</span><br><span class="line"></span><br><span class="line">// canvas </span><br><span class="line">//ctx.rotate(angle); //旋转角度  ctx.scale(w,h);  放大大小1 = 100%;</span><br><span class="line">//ctx.translate(x,y) 方法重新映射画布上的 (0,0) 位置。后调用诸如 fillRect() 之类的方法时，值会添加到 x 和 y 坐标值上。</span><br><span class="line">//ctx.setTransform();  ctx.transform();</span><br><span class="line"></span><br><span class="line">ctx.arc( r, r, nR, startAngle, endAngle, false);//context.arc(x,y,r,sAngle,eAngle,counterclockwise);</span><br><span class="line">//正上方1.5*PI</span><br><span class="line">ctx.stoke();</span><br><span class="line">ctx.closePath();</span><br><span class="line">ctx.restore();</span><br><span class="line">ctx.save();</span><br><span class="line">var fontSize = 16;</span><br><span class="line">ctx.fillStyle = &quot;#fff&quot;;</span><br><span class="line">ctx.font = fontSize + &quot;px 微软雅黑&quot;;</span><br><span class="line">ctx.textAlign = &quot;center&quot;;</span><br><span class="line">ctx.fillText(&quot;通过率&quot;, r, r-fontSize + 15);</span><br><span class="line">//换行的话，多写一行即可。</span><br><span class="line">ctx.fillText( Math.round((tmpAngle - startAngle)/(endAngle - startAngle) * 100) + &apos;%&apos;, r, r+fontSize);</span><br><span class="line"></span><br><span class="line">var rander = function() &#123;</span><br><span class="line">    requestAnimateFrame(rander);//1、经过浏览器优化，动画更流畅；2、窗口没激活时，动画将停止，省计算资源；3、更省电，尤其对移动终端</span><br><span class="line">&#125;</span><br><span class="line">//有时候我们需要加一些控制，requestAnimationFrame也可以想setInterval一样返回一个句柄，然后可以由此取消它</span><br><span class="line">var globalID;</span><br><span class="line">function animate () &#123;</span><br><span class="line">    globalID = requestAnimationFrame(animate);</span><br><span class="line">&#125;</span><br><span class="line">gloabalID = requestAnimationnFrame(animate); //start</span><br><span class="line">cancelAnimationFrame(globalID); //Stop</span><br><span class="line">//兼容多种环境</span><br><span class="line">(function() &#123;  </span><br><span class="line">    var lastTime = 0;  </span><br><span class="line">    var vendors = [&apos;ms&apos;, &apos;moz&apos;, &apos;webkit&apos;, &apos;o&apos;];  </span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;  </span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&apos;RequestAnimationFrame&apos;];  </span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&apos;CancelAnimationFrame&apos;]   </span><br><span class="line">                                   || window[vendors[x]+&apos;CancelRequestAnimationFrame&apos;];  </span><br><span class="line">    &#125;  </span><br><span class="line">   </span><br><span class="line">    if (!window.requestAnimationFrame)  </span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;  </span><br><span class="line">            var currTime = new Date().getTime();  </span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));  </span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,   </span><br><span class="line">              timeToCall);  </span><br><span class="line">            lastTime = currTime + timeToCall;  </span><br><span class="line">            return id;  </span><br><span class="line">        &#125;;  </span><br><span class="line">   </span><br><span class="line">    if (!window.cancelAnimationFrame)  </span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;  </span><br><span class="line">            clearTimeout(id);  </span><br><span class="line">        &#125;;  </span><br><span class="line">&#125;());</span><br><span class="line">//兼容环境升级版</span><br><span class="line">// requestAnimationFrame polyfill by Erik Möller.</span><br><span class="line">// Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon</span><br><span class="line"> </span><br><span class="line">// MIT license</span><br><span class="line"> </span><br><span class="line">if (!Date.now)</span><br><span class="line">    Date.now = function() &#123; return new Date().getTime(); &#125;;</span><br><span class="line"> </span><br><span class="line">(function() &#123;</span><br><span class="line">    &apos;use strict&apos;;</span><br><span class="line">    </span><br><span class="line">    var vendors = [&apos;webkit&apos;, &apos;moz&apos;];</span><br><span class="line">    for (var i = 0; i &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++i) &#123;</span><br><span class="line">        var vp = vendors[i];</span><br><span class="line">        window.requestAnimationFrame = window[vp+&apos;RequestAnimationFrame&apos;];</span><br><span class="line">        window.cancelAnimationFrame = (window[vp+&apos;CancelAnimationFrame&apos;]</span><br><span class="line">                                   || window[vp+&apos;CancelRequestAnimationFrame&apos;]);</span><br><span class="line">    &#125;</span><br><span class="line">    if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy</span><br><span class="line">        || !window.requestAnimationFrame || !window.cancelAnimationFrame) &#123;</span><br><span class="line">        var lastTime = 0;</span><br><span class="line">        window.requestAnimationFrame = function(callback) &#123;</span><br><span class="line">            var now = Date.now();</span><br><span class="line">            var nextTime = Math.max(lastTime + 16, now);</span><br><span class="line">            return setTimeout(function() &#123; callback(lastTime = nextTime); &#125;,</span><br><span class="line">                              nextTime - now);</span><br><span class="line">        &#125;;</span><br><span class="line">        window.cancelAnimationFrame = clearTimeout;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">//星空图动画：</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body &#123;</span><br><span class="line">            overflow:hidden;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;canvas id=&quot;motion&quot;&gt;Canvas is not supported in your browser.&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    // requestAnimationFrame polyfill by Erik Möller.</span><br><span class="line">    if (!Date.now)</span><br><span class="line">        Date.now = function() &#123; return new Date().getTime(); &#125;;</span><br><span class="line"></span><br><span class="line">    (function() &#123;</span><br><span class="line">        &apos;use strict&apos;;       </span><br><span class="line">        var vendors = [&apos;webkit&apos;, &apos;moz&apos;];</span><br><span class="line">        for (var i = 0; i &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++i) &#123;</span><br><span class="line">            var vp = vendors[i];</span><br><span class="line">            window.requestAnimationFrame = window[vp+&apos;RequestAnimationFrame&apos;];</span><br><span class="line">            window.cancelAnimationFrame = (window[vp+&apos;CancelAnimationFrame&apos;]</span><br><span class="line">                                    || window[vp+&apos;CancelRequestAnimationFrame&apos;]);</span><br><span class="line">        &#125;</span><br><span class="line">        if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy</span><br><span class="line">            || !window.requestAnimationFrame || !window.cancelAnimationFrame) &#123;</span><br><span class="line">            var lastTime = 0;</span><br><span class="line">            window.requestAnimationFrame = function(callback) &#123;</span><br><span class="line">                var now = Date.now();</span><br><span class="line">                var nextTime = Math.max(lastTime + 16, now);</span><br><span class="line">                return setTimeout(function() &#123; callback(lastTime = nextTime); &#125;,</span><br><span class="line">                                nextTime - now);</span><br><span class="line">            &#125;;</span><br><span class="line">            window.cancelAnimationFrame = clearTimeout;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;());</span><br><span class="line"></span><br><span class="line">    var getRandomColor = function()&#123;</span><br><span class="line">        return &apos;#&apos;+(Math.random()*0xffffff&lt;&lt;0).toString(16);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var canvas = document.getElementById(&quot;motion&quot;), </span><br><span class="line">        c = canvas.getContext(&quot;2d&quot;),</span><br><span class="line">        particles = &#123;&#125;,</span><br><span class="line">        particleIndex = 0,</span><br><span class="line">        particleNum = 0.2;</span><br><span class="line"></span><br><span class="line">    canvas.width = window.innerWidth;</span><br><span class="line">    canvas.height = window.innerHeight;</span><br><span class="line"></span><br><span class="line">    function Particle()&#123;</span><br><span class="line">        this.x = canvas.width/2;</span><br><span class="line">        this.y = canvas.height/2;</span><br><span class="line"></span><br><span class="line">        this.vx = Math.random() * 6 - 3;</span><br><span class="line">        this.vy = Math.random() * 4 - 2;</span><br><span class="line"></span><br><span class="line">        this.growth = ( Math.abs(this.vx) + Math.abs(this.vy) ) * 0.007;</span><br><span class="line"></span><br><span class="line">        particleIndex++;</span><br><span class="line">        particles[particleIndex] = this;</span><br><span class="line">        this.id = particleIndex;</span><br><span class="line">        this.size = Math.random() * 1;</span><br><span class="line">        this.color = getRandomColor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Particle.prototype.draw = function()&#123;</span><br><span class="line">        this.x += this.vx;</span><br><span class="line">        this.y += this.vy;</span><br><span class="line"></span><br><span class="line">        this.size += this.growth;</span><br><span class="line">        if(this.x &gt; canvas.width || this.y &gt; canvas.height)&#123;</span><br><span class="line">            delete particles[this.id];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        c.fillStyle = this.color;</span><br><span class="line">        c.beginPath();</span><br><span class="line">        c.arc(this.x, this.y, this.size,0*Math.PI,2*Math.PI);</span><br><span class="line">        c.fill();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    function animate()&#123;</span><br><span class="line">        requestAnimationFrame( animate );        </span><br><span class="line">        c.fillStyle = &quot;#000&quot;;</span><br><span class="line">        c.fillRect(0,0,canvas.width,canvas.height);</span><br><span class="line">        if(Math.random() &gt; particleNum)&#123;</span><br><span class="line">            new Particle();</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i in particles)&#123;</span><br><span class="line">            particles[i].draw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    requestAnimationFrame( animate );</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/canvas画图的使用总结/" data-id="cjt4ghdep00009wt6af9x7f91" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/ztree树结构总结/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ztree树结构总结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">thinkphp3.2 + react开发上传文件展示信息学习记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/11/vue基本知识/">vue基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/easy-ui之dataGrid/">easy-ui之dataGrid</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/ztree树结构总结/">ztree树结构总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/canvas画图的使用总结/">canvas画图的使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/">thinkphp3.2 + react开发上传文件展示信息学习记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

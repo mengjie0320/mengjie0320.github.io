@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>ztree树结构总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ztree学习：http://www.treejs.cn/v3/api.php  // 1 原型$.fn.zTree 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747">
+<meta name="keywords" content="ztree、常用特性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ztree树结构总结">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/ztree树结构总结/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="ztree学习：http://www.treejs.cn/v3/api.php  // 1 原型$.fn.zTree 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="file:///C:/Users/admin/Documents/My%20Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png">
+<meta property="og:updated_time" content="2019-03-11T14:25:45.259Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ztree树结构总结">
+<meta name="twitter:description" content="ztree学习：http://www.treejs.cn/v3/api.php  // 1 原型$.fn.zTree 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747">
+<meta name="twitter:image" content="file:///C:/Users/admin/Documents/My%20Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ztree树结构总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/ztree树结构总结/" class="article-date">
+  <time datetime="2019-03-11T14:24:54.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ztree树结构总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ztree学习：<a href="http://www.treejs.cn/v3/api.php" target="_blank" rel="noopener">http://www.treejs.cn/v3/api.php</a></li>
+</ul>
+<p><strong>// 1 原型$.fn.zTree</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">$.fn.zTree = &#123;</span><br><span class="line">    consts // 常量对象；</span><br><span class="line">    _z // zTree v3.x 内部的全部方法都可以通过 $.fn.zTree._z对象进行调用</span><br><span class="line">    getZTreeObj(treeId) // 根据treeId获取zTreeObj</span><br><span class="line">    destroy(treeId) // 根据treeId销毁tree</span><br><span class="line">    init: function(obj, zSetting, zNodes) &#123; // 初始化方法，返回zTreeObj对象；</span><br><span class="line"> ...</span><br><span class="line"> var zTreeTools = &#123; // 参考API的zTreeObj对象说明，是指API的zTreeObj对象；</span><br><span class="line">  setting : setting, // zTree 对象使用的 setting 配置数据，详细请参考 “setting 配置详解”中的各个属性详细说明</span><br><span class="line">  addNodes : function(parentNode, newNodes, isSilent) &#123; // 添加节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  cancelSelectedNode : function(node) &#123; // 取消节点的选中状态。</span><br><span class="line">   view.cancelPreSelectedNode(setting, node);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroy : function() &#123; // 1、用此方法可以销毁 zTreeObj 代表的 zTree。</span><br><span class="line">     // 2、销毁当前页面全部的 zTree，也可以使用 $.fn.zTree.destroy() 方法。</span><br><span class="line">     // 3、重新使用已经被销毁的树，必须要使用 init 方法进行初始化。</span><br><span class="line">   view.destroy(setting);</span><br><span class="line">  &#125;,</span><br><span class="line">  expandAll : function(expandFlag) &#123; // 展开 / 折叠 全部节点</span><br><span class="line">   expandFlag = !!expandFlag;</span><br><span class="line">   view.expandCollapseSonNode(setting, null, expandFlag, true);</span><br><span class="line">   return expandFlag;</span><br><span class="line">  &#125;,</span><br><span class="line">  expandNode : function(node, expandFlag, sonSign, focus, callbackFlag) &#123; // 展开 / 折叠 指定的节点</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodes : function() &#123; // 获取 zTree 的全部节点数据</span><br><span class="line">   return data.getNodes(setting);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeByParam : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件完全匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodeByParam(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeByTId : function(tId) &#123; // 根据 zTree 的唯一标识 tId 快速获取节点 JSON 数据对象</span><br><span class="line">   return data.getNodeCache(setting, tId);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByParam : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件完全匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodesByParam(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByParamFuzzy : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件模糊匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodesByParamFuzzy(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByFilter: function(filter, isSingle, parentNode, invokeParam) &#123; // 根据自定义规则搜索节点数据 JSON 对象集合 或 单个节点数据</span><br><span class="line">   isSingle = !!isSingle;</span><br><span class="line">   if (!filter || (typeof filter != &quot;function&quot;)) return (isSingle ? null : []);</span><br><span class="line">   return data.getNodesByFilter(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), filter, isSingle, invokeParam);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeIndex : function(node) &#123; // 获取某节点在同级节点中的序号（从0开始）</span><br><span class="line">   if (!node) return null;</span><br><span class="line">   var childKey = setting.data.key.children,</span><br><span class="line">   parentNode = (node.parentTId) ? node.getParentNode() : data.getRoot(setting);</span><br><span class="line">   for (var i=0, l = parentNode[childKey].length; i &lt; l; i++) &#123;</span><br><span class="line">    if (parentNode[childKey][i] == node) return i;</span><br><span class="line">   &#125;</span><br><span class="line">   return -1;</span><br><span class="line">  &#125;,</span><br><span class="line">  getSelectedNodes : function() &#123; // 获取 zTree 当前被选中的节点数据集合</span><br><span class="line">   var r = [], list = data.getRoot(setting).curSelectedList;</span><br><span class="line">   for (var i=0, l=list.length; i&lt;l; i++) &#123;</span><br><span class="line">    r.push(list[i]);</span><br><span class="line">   &#125;</span><br><span class="line">   return r;</span><br><span class="line">  &#125;,</span><br><span class="line">  isSelectedNode : function(node) &#123; // 是否选中的节点</span><br><span class="line">   return data.isSelectedNode(setting, node);</span><br><span class="line">  &#125;,</span><br><span class="line">  reAsyncChildNodes : function(parentNode, reloadType, isSilent) &#123; // 强行异步加载父节点的子节点。[setting.async.enable = true 时有效]已经加载过的父节点可反复使用此方法重新加载。请通过 zTree 对象执行此方法。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  refresh : function() &#123; // 刷新 zTree</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  removeChildNodes : function(node) &#123; // 清空某父节点的子节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  removeNode : function(node, callbackFlag) &#123; // 删除节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  selectNode : function(node, addFlag) &#123; // 选中指定节点</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  transformTozTreeNodes : function(simpleNodes) &#123; // 将简单 Array 格式数据转换为 zTree 使用的标准 JSON 嵌套数据格式。</span><br><span class="line">   return data.transformTozTreeFormat(setting, simpleNodes);</span><br><span class="line">  &#125;,</span><br><span class="line">  transformToArray : function(nodes) &#123; // 将 zTree 使用的标准 JSON 嵌套格式的数据转换为简单 Array 格式。(免去用户自行编写递归遍历全部节点的麻烦)</span><br><span class="line">   return data.transformToArrayFormat(setting, nodes);</span><br><span class="line">  &#125;,</span><br><span class="line">  updateNode : function(node, checkTypeFlag) &#123; // 更新某节点数据，主要用于该节点显示属性的更新。</span><br><span class="line">   ...</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> root.treeTools = zTreeTools;</span><br><span class="line"> data.setZTreeTools(setting, zTreeTools);</span><br><span class="line"></span><br><span class="line"> if (root[childKey] &amp;&amp; root[childKey].length &gt; 0) &#123;</span><br><span class="line">  view.createNodes(setting, 0, root[childKey]);</span><br><span class="line"> &#125; else if (setting.async.enable &amp;&amp; setting.async.url &amp;&amp; setting.async.url !== &apos;&apos;) &#123;</span><br><span class="line">  view.asyncNode(setting);</span><br><span class="line"> &#125;</span><br><span class="line"> return zTreeTools;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>来源： <a href="http://blog.sina.com.cn/s/blog_667ac0360102ebk9.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_667ac0360102ebk9.html</a></p>
+<ul>
+<li>ztree新知识点补充：（不用重新刷新的更新节点方式，对象）</li>
+</ul>
+<p>//1、获取zTree对象</p>
+<p>var treeObj = $.fn.zTree.getZTreeObj(“ztreeDemo”);</p>
+<p>//2、找到要修改的树的节点</p>
+<p>var treeNode = treeObj.getNodeByParam(“task_id”,tree_id);</p>
+<p>//3、为要修改的节点赋值</p>
+<p>treeNode.name = tree_name;</p>
+<p>//4、修改该节点上的值</p>
+<p>treeObj.updateNode(treeNode);</p>
+<p>补充，添加节点：addNodes（如果与等级无关，其实也是不用更新的）；</p>
+<p>addNodes(parentNode,index,newNodes,isSlient);</p>
+<p><img src="file:///C:/Users/admin/Documents/My Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png" alt="img"></p>
+<p>removeNode移除（对象）</p>
+<p>treeObj.removeNode(nodes[j]);</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/ztree树结构总结/" data-id="cjt4ghdfy000h9wt66hbs506i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/easy-ui之dataGrid/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          easy-ui之dataGrid
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/canvas画图的使用总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">canvas画图的使用总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/11/vue基本知识/">vue基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/easy-ui之dataGrid/">easy-ui之dataGrid</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/ztree树结构总结/">ztree树结构总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/canvas画图的使用总结/">canvas画图的使用总结</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/">thinkphp3.2 + react开发上传文件展示信息学习记录</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

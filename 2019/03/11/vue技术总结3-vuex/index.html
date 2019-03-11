@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。 一、vuex的属性State、 Getter、Mutation 、Action、 Module sto">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-11T11:06:50.448Z">
+<meta property="og:updated_time" content="2019-03-11T13:56:43.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue技术总结3 -- vuex">
 <meta name="twitter:description" content="​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。 一、vuex的属性State、 Getter、Mutation 、Action、 Module sto">
@@ -132,11 +132,12 @@
 <p>本来Vue用Component就是为了减少耦合，现在这么用，和组件化的初衷相背。但兄弟组件有大量通信的，建议一定要用，项目大小不论，以为回省下很多操作</p>
 </li>
 </ol>
+<h1 id="四、请求数据代码位置：vuex的actions？组件的methods"><a href="#四、请求数据代码位置：vuex的actions？组件的methods" class="headerlink" title="四、请求数据代码位置：vuex的actions？组件的methods?"></a>四、请求数据代码位置：vuex的actions？组件的methods?</h1><p>一般情况下，我们在开发中，所有的数据请求基本上都写在组件调用的位置。但是当有一些请求数据的接口被复用，且几率很高，这个时候就可以将其置于actions里面，包装秤promise返回，在调用处用async await处理返回的数据。如果不是复用，则直接放在组件的methods里面即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjt49wihw0003a8t6px4ax1kp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjt4ghdfn000b9wt60bbkse20" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li></ul>
@@ -178,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
     </div>
   </div>
 
@@ -188,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a>
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a>
     </div>
   </div>
 
@@ -210,23 +211,23 @@
       <ul>
         
           <li>
-            <a href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
+            <a href="/2019/03/11/vue基本知识/">vue基本知识</a>
           </li>
         
           <li>
-            <a href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
+            <a href="/2019/03/11/easy-ui之dataGrid/">easy-ui之dataGrid</a>
           </li>
         
           <li>
-            <a href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
+            <a href="/2019/03/11/ztree树结构总结/">ztree树结构总结</a>
           </li>
         
           <li>
-            <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
+            <a href="/2019/03/11/canvas画图的使用总结/">canvas画图的使用总结</a>
           </li>
         
           <li>
-            <a href="/2019/03/10/将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
+            <a href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/">thinkphp3.2 + react开发上传文件展示信息学习记录</a>
           </li>
         
       </ul>

@@ -5,15 +5,20 @@
   
 
   
-  <title>Archives: 2019/3 | Hexo</title>
+  <title>easy-ui之dataGrid | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/03/index.html">
+  <meta name="description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
+<meta name="keywords" content="dataGrid、easy-ui">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easy-ui之dataGrid">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/easy-ui之dataGrid/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-11T14:35:43.832Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="easy-ui之dataGrid">
+<meta name="twitter:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,216 +65,94 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/vue基本知识/" class="archive-article-date">
-  <time datetime="2019-03-11T14:27:08.000Z" itemprop="datePublished">Mar 11</time>
+        <section id="main"><article id="post-easy-ui之dataGrid" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/easy-ui之dataGrid/" class="article-date">
+  <time datetime="2019-03-11T14:26:45.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/vue基本知识/">vue基本知识</a>
+    <h1 class="article-title" itemprop="name">
+      easy-ui之dataGrid
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/easy-ui之dataGrid/" class="archive-article-date">
-  <time datetime="2019-03-11T14:26:45.000Z" itemprop="datePublished">Mar 11</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/easy-ui之dataGrid/">easy-ui之dataGrid</a>
-    </h1>
-  
+        <ul>
+<li>datagrid学习：</li>
+</ul>
+<p>(1)datagrid 参数字段 </p>
+<p>​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges</p>
+<p>(2)data-options 属性 可以设置的内容：</p>
+<p>url:</p>
+<p>singSelect:</p>
+<p>toolbar:</p>
+<p>method:</p>
+<p>onClickRow:</p>
+<p>sortable:true/false;</p>
+<p>remoteSort:false/true;</p>
+<p>multiSort:true/false;</p>
+<p>collapsible:true/false;</p>
+<p>rownumbers:true;</p>
+<p>onLoadSuccess:function(){</p>
+<p>​    $(this).datagrid(‘freezeRow’,0).datagrid(‘freezeRow’,1);</p>
+<p>};</p>
+<p>frozen:true/false;  在不需要变化的地方设置frozen=true;</p>
+<p>formatter:  js的function名</p>
+<p>​         js的function名：funtion(val,row){     } ;</p>
+<p>hideColumn – item.name</p>
+<p>showColumn – item.name</p>
+<p>(3)var cmenu = $(‘<div>’).appendTo(‘body’);</div></p>
+<p>cmenu.menu({ onclick： })</p>
+<p>datagrid的format有三个参数（value,rowDatas,rowIndex)，rowDatas是整列的数据，value应该对应着某一列的值，rowIndex应该是某列的排序，</p>
+<p>​        </p>
+<p>在此列下传参的JavaScript的参数只能是rowIndex，必要情况下可以借由数组来更新。</p>
+<p>$(“#aa”).datagrid(‘showColumn’,’XXX’);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#aa&quot;).datagrid(&apos;hideColumn&apos;,&apos;XXX&apos;);   显示和隐藏，正常的display等的编辑是不起效果的。</span><br></pre></td></tr></table></figure>
+<p>不过，也要意识到，当自己解决一个问题时，可以将解决办法以及对应效果进行记录和整理，方便观察失败的原因，对比查漏解决的办法，或许只是自己用错方法了。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/ztree树结构总结/" class="archive-article-date">
-  <time datetime="2019-03-11T14:24:54.000Z" itemprop="datePublished">Mar 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/ztree树结构总结/">ztree树结构总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/canvas画图的使用总结/" class="archive-article-date">
-  <time datetime="2019-03-11T14:15:24.000Z" itemprop="datePublished">Mar 11</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/easy-ui之dataGrid/" data-id="cjt4ghdf200019wt6v8bofnvg" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/canvas画图的使用总结/">canvas画图的使用总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/" class="archive-article-date">
-  <time datetime="2019-03-11T14:03:51.000Z" itemprop="datePublished">Mar 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/">thinkphp3.2 + react开发上传文件展示信息学习记录</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/vue基本知识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue基本知识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/ztree树结构总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ztree树结构总结</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/echarts组件使用总结/" class="archive-article-date">
-  <time datetime="2019-03-11T13:58:11.000Z" itemprop="datePublished">Mar 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/echarts组件使用总结/">echarts组件使用总结</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/vue技术总结4-axios及其代理配置/" class="archive-article-date">
-  <time datetime="2019-03-11T11:02:03.000Z" itemprop="datePublished">Mar 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/vue技术总结3-vuex/" class="archive-article-date">
-  <time datetime="2019-03-11T10:32:37.000Z" itemprop="datePublished">Mar 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/11/vue技术总结2-页面间传递数据/" class="archive-article-date">
-  <time datetime="2019-03-11T10:18:53.000Z" itemprop="datePublished">Mar 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" class="archive-article-date">
-  <time datetime="2019-03-10T13:44:25.000Z" itemprop="datePublished">Mar 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2019/03/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/03/page/2/">Next &raquo;</a>
-  </nav>
 
 </section>
         
