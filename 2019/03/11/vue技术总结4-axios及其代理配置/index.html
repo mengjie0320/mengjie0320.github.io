@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue技术总结4 -- axios及其代理配置 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一、axios的引用 main.js中  1234567891011import axios from &amp;apos;axios&amp;apos;const base = process.env.API_ROOT //获取当前环境的IP及端口const instance = axios.create(&amp;#123;  baseURL:base  //设为axios请求的baseURL&amp;#125;)Vue.p">
+<meta name="keywords" content="vue、axios、代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue技术总结4 -- axios及其代理配置">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、axios的引用 main.js中  1234567891011import axios from &amp;apos;axios&amp;apos;const base = process.env.API_ROOT //获取当前环境的IP及端口const instance = axios.create(&amp;#123;  baseURL:base  //设为axios请求的baseURL&amp;#125;)Vue.p">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-11T11:36:27.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue技术总结4 -- axios及其代理配置">
+<meta name="twitter:description" content="一、axios的引用 main.js中  1234567891011import axios from &amp;apos;axios&amp;apos;const base = process.env.API_ROOT //获取当前环境的IP及端口const instance = axios.create(&amp;#123;  baseURL:base  //设为axios请求的baseURL&amp;#125;)Vue.p">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vue技术总结4-axios及其代理配置" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/vue技术总结4-axios及其代理配置/" class="article-date">
+  <time datetime="2019-03-11T11:02:03.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue技术总结4 -- axios及其代理配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、axios的引用"><a href="#一、axios的引用" class="headerlink" title="一、axios的引用"></a>一、axios的引用</h1><ol>
+<li>main.js中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">const base = process.env.API_ROOT //获取当前环境的IP及端口</span><br><span class="line">const instance = axios.create(&#123;</span><br><span class="line">  baseURL:base  //设为axios请求的baseURL</span><br><span class="line">&#125;)</span><br><span class="line">Vue.prototype.$http = instance //定义一个vue的原型对象$http</span><br><span class="line">/*可以按照这个进行一些提交文件的默认设置或者跨域的处理</span><br><span class="line">axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/json&apos;;</span><br><span class="line">axios.defaults.withCredentials=true; //代理配置的一个条件</span><br><span class="line">axios.defaults.headers.common[&apos;X-Requested-With&apos;] = &apos;XMLHttpRequest&apos;;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>组件中引用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">"/Login/login"</span>).then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line"><span class="keyword">this</span>.$http.post(<span class="string">"/Login/login"</span>).then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="二、axios代理设置"><a href="#二、axios代理设置" class="headerlink" title="二、axios代理设置"></a>二、axios代理设置</h1><p>生产环境等的情况下，跨域使用jsonp等跨域处理；</p>
+<p>而代理设置通常针对于开发环境下的一些跨域问题，为了简便，直接配置代理。配置代理后，每次发请求，后台地址就会转发到你自己的本地。</p>
+<ol>
+<li>在config/index.js的dev里添加</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">    &apos;/api&apos;: &#123;</span><br><span class="line">        target: &apos;http://****.***.***.8**:***&apos;, //后台服务器的地址</span><br><span class="line">        changeOrigin: true,  //设置为true</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">            &apos;^/api&apos;:&apos;/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在src/main.js中</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.withCredentials=<span class="literal">true</span>; <span class="comment">//设置为true</span></span><br><span class="line">Vue.prototype.baseUrl = <span class="string">'/api'</span>; <span class="comment">// "/api"一定要保证对应</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>组件中的使用：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">     baseURL: this.baseUrl,</span><br><span class="line">    url: &apos;/*****&apos;,</span><br><span class="line">    ......</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+<p>当然也可以在上一步的时候结合instance变量，直接使用。</p>
+<ol start="4">
+<li>配置了代理如不使用axios，正常情况下ajax可以通过withCredentials与后台配合解决跨域问题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">url: this.baseUrl+&apos;/***&apos;, //后面加后端接口的地址</span><br><span class="line">xhrFields: &#123;</span><br><span class="line">    withCredentials: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="跨域问题解决办法："><a href="#跨域问题解决办法：" class="headerlink" title="跨域问题解决办法："></a>跨域问题解决办法：</h2><ol>
+<li>ajax+jsonp+后台配置</li>
+<li>ajax+withCredentials+后台配置</li>
+<li>ajax+cors+后台配置</li>
+</ol>
+<h6 id="情况各不一样，还有待细究；本人常用credentials"><a href="#情况各不一样，还有待细究；本人常用credentials" class="headerlink" title="情况各不一样，还有待细究；本人常用credentials"></a>情况各不一样，还有待细究；本人常用credentials</h6><h6 id="补充cors后台用法，前端在请求位置加上cors-true-false是否异步，后台配置可参考如下："><a href="#补充cors后台用法，前端在请求位置加上cors-true-false是否异步，后台配置可参考如下：" class="headerlink" title="补充cors后台用法，前端在请求位置加上cors:true/false是否异步，后台配置可参考如下："></a>补充cors后台用法，前端在请求位置加上cors:true/false是否异步，后台配置可参考如下：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public CorsFilter corsFilter() &#123;</span><br><span class="line">        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();</span><br><span class="line">        final CorsConfiguration config = new CorsConfiguration();</span><br><span class="line">        config.setAllowCredentials(true);// 设置是否支持cookie跨域</span><br><span class="line">        //设置白名单，不要填*，不然前端会报错</span><br><span class="line">        config.setAllowedOrigins(Arrays.asList(&quot;http://xxx.xxx.xxx.xxx:xx&quot;,&quot;http://xxx.xxx.xxx.xxx:xx&quot;,&quot;http://xxx.xxx.xxx.xxx:xx&quot;, &quot;http://xxx.xxx.xxx.xxx:xx&quot;));// 支持的原始域</span><br><span class="line">        // http://www.a.com</span><br><span class="line">        config.setAllowedHeaders(Arrays.asList(&quot;*&quot;));// 允许头</span><br><span class="line">        config.setAllowedMethods(Arrays.asList(&quot;GET&quot;,&quot;POST&quot;));// 允许请求方法 GET POST</span><br><span class="line">        config.setMaxAge(300l);// 缓存时间，对同一请求不再进行跨域检查</span><br><span class="line">        source.registerCorsConfiguration(&quot;/**&quot;, config);</span><br><span class="line">        return new CorsFilter(source);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/" data-id="cjt49wii20004a8t688xxaj5i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/11/vue技术总结3-vuex/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue技术总结3 -- vuex</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

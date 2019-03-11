@@ -62,6 +62,260 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vue技术总结4-axios及其代理配置" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/vue技术总结4-axios及其代理配置/" class="article-date">
+  <time datetime="2019-03-11T11:02:03.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、axios的引用"><a href="#一、axios的引用" class="headerlink" title="一、axios的引用"></a>一、axios的引用</h1><ol>
+<li>main.js中</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">const base = process.env.API_ROOT //获取当前环境的IP及端口</span><br><span class="line">const instance = axios.create(&#123;</span><br><span class="line">  baseURL:base  //设为axios请求的baseURL</span><br><span class="line">&#125;)</span><br><span class="line">Vue.prototype.$http = instance //定义一个vue的原型对象$http</span><br><span class="line">/*可以按照这个进行一些提交文件的默认设置或者跨域的处理</span><br><span class="line">axios.defaults.headers.post[&apos;Content-Type&apos;] = &apos;application/json&apos;;</span><br><span class="line">axios.defaults.withCredentials=true; //代理配置的一个条件</span><br><span class="line">axios.defaults.headers.common[&apos;X-Requested-With&apos;] = &apos;XMLHttpRequest&apos;;</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>组件中引用</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">"/Login/login"</span>).then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;&#125;);</span><br><span class="line"><span class="keyword">this</span>.$http.post(<span class="string">"/Login/login"</span>).then(<span class="function">(<span class="params">res</span>)=&gt;</span>&#123;&#125;).catch(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="二、axios代理设置"><a href="#二、axios代理设置" class="headerlink" title="二、axios代理设置"></a>二、axios代理设置</h1><p>生产环境等的情况下，跨域使用jsonp等跨域处理；</p>
+<p>而代理设置通常针对于开发环境下的一些跨域问题，为了简便，直接配置代理。配置代理后，每次发请求，后台地址就会转发到你自己的本地。</p>
+<ol>
+<li>在config/index.js的dev里添加</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">proxyTable: &#123;</span><br><span class="line">    &apos;/api&apos;: &#123;</span><br><span class="line">        target: &apos;http://****.***.***.8**:***&apos;, //后台服务器的地址</span><br><span class="line">        changeOrigin: true,  //设置为true</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">            &apos;^/api&apos;:&apos;/&apos;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在src/main.js中</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.withCredentials=<span class="literal">true</span>; <span class="comment">//设置为true</span></span><br><span class="line">Vue.prototype.baseUrl = <span class="string">'/api'</span>; <span class="comment">// "/api"一定要保证对应</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>组件中的使用：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">axios(&#123;</span><br><span class="line">     baseURL: this.baseUrl,</span><br><span class="line">    url: &apos;/*****&apos;,</span><br><span class="line">    ......</span><br><span class="line"> &#125;)</span><br></pre></td></tr></table></figure>
+<p>当然也可以在上一步的时候结合instance变量，直接使用。</p>
+<ol start="4">
+<li>配置了代理如不使用axios，正常情况下ajax可以通过withCredentials与后台配合解决跨域问题</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">url: this.baseUrl+&apos;/***&apos;, //后面加后端接口的地址</span><br><span class="line">xhrFields: &#123;</span><br><span class="line">    withCredentials: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="跨域问题解决办法："><a href="#跨域问题解决办法：" class="headerlink" title="跨域问题解决办法："></a>跨域问题解决办法：</h2><ol>
+<li>ajax+jsonp+后台配置</li>
+<li>ajax+withCredentials+后台配置</li>
+<li>ajax+cors+后台配置</li>
+</ol>
+<h6 id="情况各不一样，还有待细究；本人常用credentials"><a href="#情况各不一样，还有待细究；本人常用credentials" class="headerlink" title="情况各不一样，还有待细究；本人常用credentials"></a>情况各不一样，还有待细究；本人常用credentials</h6><h6 id="补充cors后台用法，前端在请求位置加上cors-true-false是否异步，后台配置可参考如下："><a href="#补充cors后台用法，前端在请求位置加上cors-true-false是否异步，后台配置可参考如下：" class="headerlink" title="补充cors后台用法，前端在请求位置加上cors:true/false是否异步，后台配置可参考如下："></a>补充cors后台用法，前端在请求位置加上cors:true/false是否异步，后台配置可参考如下：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public CorsFilter corsFilter() &#123;</span><br><span class="line">        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();</span><br><span class="line">        final CorsConfiguration config = new CorsConfiguration();</span><br><span class="line">        config.setAllowCredentials(true);// 设置是否支持cookie跨域</span><br><span class="line">        //设置白名单，不要填*，不然前端会报错</span><br><span class="line">        config.setAllowedOrigins(Arrays.asList(&quot;http://xxx.xxx.xxx.xxx:xx&quot;,&quot;http://xxx.xxx.xxx.xxx:xx&quot;,&quot;http://xxx.xxx.xxx.xxx:xx&quot;, &quot;http://xxx.xxx.xxx.xxx:xx&quot;));// 支持的原始域</span><br><span class="line">        // http://www.a.com</span><br><span class="line">        config.setAllowedHeaders(Arrays.asList(&quot;*&quot;));// 允许头</span><br><span class="line">        config.setAllowedMethods(Arrays.asList(&quot;GET&quot;,&quot;POST&quot;));// 允许请求方法 GET POST</span><br><span class="line">        config.setMaxAge(300l);// 缓存时间，对同一请求不再进行跨域检查</span><br><span class="line">        source.registerCorsConfiguration(&quot;/**&quot;, config);</span><br><span class="line">        return new CorsFilter(source);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/" data-id="cjt49wii20004a8t688xxaj5i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue技术总结3-vuex" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/vue技术总结3-vuex/" class="article-date">
+  <time datetime="2019-03-11T10:32:37.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。<br>​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。</p>
+<h1 id="一、vuex的属性"><a href="#一、vuex的属性" class="headerlink" title="一、vuex的属性"></a>一、vuex的属性</h1><p>State、 Getter、Mutation 、Action、 Module</p>
+<p>store的属性：state、mutations、action、getters</p>
+<h5 id="1-1、state"><a href="#1-1、state" class="headerlink" title="1.1、state"></a>1.1、state</h5><p>​        state为单一状态树，在state中需要定义我们所需要管理的数组、对象、字符串等等，只有在这里定义了，在vue.js的组件中才能获取你定义的这个对象的状态。</p>
+<h6 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>Vuex就是一个放了很多对象的仓库，而state就相当于数据源存放地。</li>
+<li>state里面存放的数据是响应式的，Vue组件从store中读取数据，若是store中的数据发生改变，依赖这个数据的组件也会发生更新</li>
+<li>它通过mapState把全局的 state 和 getters 映射到当前组件的 computed 计算属性中；也可以通过this.$store.state.XXX（属性名）直接应用到组件里面；</li>
+</ol>
+<h5 id="1-2、getter"><a href="#1-2、getter" class="headerlink" title="1.2、getter"></a>1.2、getter</h5><p>​        getter有点类似vue.js的计算属性，当我们需要从store的state中派生出一些状态，那么我们就需要使用getter，getter会接收state作为第一个参数，而且getter的返回值会根据它的依赖被缓存起来，只有getter中的依赖值（state中的某个需要派生状态的值）发生改变的时候才会被重新计算。</p>
+<h6 id="特性：-1"><a href="#特性：-1" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>getters 可以对State进行计算操作，它就是Store的计算属性</li>
+<li>虽然在组件内也可以做计算属性，但是getters 可以在多组件之间复用</li>
+<li>如果一个状态只在一个组件内使用，是可以不用getters</li>
+</ol>
+<h5 id="1-3、mutation"><a href="#1-3、mutation" class="headerlink" title="1.3、mutation"></a>1.3、mutation</h5><p>​        更改store中state状态的唯一方法就是提交mutation，就很类似事件。每个mutation都有一个字符串类型的事件类型和一个回调函数，我们需要改变state的值就要在回调函数中改变。我们要执行这个回调函数，那么我们需要执行一个相应的调用方法：store.commit。</p>
+<h6 id="特性：-2"><a href="#特性：-2" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>对state进行更改，回调函数包含所有判断及操作</li>
+</ol>
+<h5 id="1-4、action"><a href="#1-4、action" class="headerlink" title="1.4、action"></a>1.4、action</h5><p>​        action可以提交mutation，在action中可以执行store.commit，而且action中可以有任何的异步操作。在页面中如果我们要嗲用这个action，则需要执行store.dispatch</p>
+<h6 id="特性：-3"><a href="#特性：-3" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>Action 类似于 mutation，但是Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作</li>
+</ol>
+<h5 id="1-5、module"><a href="#1-5、module" class="headerlink" title="1.5、module"></a>1.5、module</h5><p>​        module其实只是解决了当state中很复杂臃肿的时候，module可以将store分割成模块，每个模块中拥有自己的state、mutation、action和getter。</p>
+<p>参考网址：<a href="https://blog.csdn.net/twinkle_J/article/details/81238093" target="_blank" rel="noopener">https://blog.csdn.net/twinkle_J/article/details/81238093</a></p>
+<h1 id="二、使用示例："><a href="#二、使用示例：" class="headerlink" title="二、使用示例："></a>二、使用示例：</h1><ol>
+<li>创建一个/store/index.js，文件配置如下（以用户信息做例子）：</li>
+</ol>
+<p>项目开发中，常将vuex及localStorage一起使用，保证信息的存储，而不会被页面刷新丢失</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">	isLogin: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base = root.root;<span class="comment">//root.root</span></span><br><span class="line">axios.defaults.headers.post[<span class="string">'Content-Type'</span>] = <span class="string">'application/json'</span>;</span><br><span class="line">Vue.prototype.$axios = axios;</span><br><span class="line">axios.defaults.withCredentials=<span class="literal">true</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	state: &#123;</span><br><span class="line">		isLogin: <span class="number">0</span>,   <span class="comment">//0表示未登录</span></span><br><span class="line">		token: <span class="string">''</span>,    <span class="comment">//定义一个token变量</span></span><br><span class="line">		role:<span class="number">1</span>,       <span class="comment">//角色</span></span><br><span class="line">		user: <span class="built_in">JSON</span>.stringify(localStorage.user || <span class="string">'&#123;&#125;'</span>), <span class="comment">//user信息存储</span></span><br><span class="line">	&#125;,</span><br><span class="line">	mutations: &#123;</span><br><span class="line">		login (state,data) &#123; </span><br><span class="line">			localStorage.token = data; <span class="comment">//存储登录信息</span></span><br><span class="line">			state.token = data</span><br><span class="line">		&#125;，</span><br><span class="line">        changeUser (state,data)&#123;</span><br><span class="line">			state.user = data;</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	actions: &#123;</span><br><span class="line">		getUser (&#123;commit,paramData&#125;)&#123; <span class="comment">//获取user信息</span></span><br><span class="line">			<span class="keyword">let</span> $router = paramData;</span><br><span class="line">			axios.get(api.info).then(</span><br><span class="line">				res =&gt; &#123;</span><br><span class="line">					<span class="keyword">let</span> data = res.data.data;</span><br><span class="line">					commit(<span class="string">'changeUser'</span>, data.role_id);<span class="comment">//commit mutations里面的changeUser</span></span><br><span class="line">					localStorage.user = <span class="built_in">JSON</span>.stringify(data.role_id || &#123;&#125;);</span><br><span class="line">				&#125;</span><br><span class="line">			).catch(</span><br><span class="line">				err =&gt; &#123;</span><br><span class="line">					commit(<span class="string">'changeUser'</span>,&#123;&#125;);</span><br><span class="line">					<span class="built_in">console</span>.log(router+<span class="string">'------drouter'</span>);</span><br><span class="line">					<span class="keyword">if</span>(router.currentRoute.matched.some(<span class="function"><span class="params">record</span> =&gt;</span> (record.mate.requireAuth)))&#123;</span><br><span class="line">						router.push(&#123;</span><br><span class="line">							path: <span class="string">'/login'</span></span><br><span class="line">						&#125;)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在src/main.js中import该文件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span> <span class="comment">//根据自己的路径实际更改</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  store, <span class="comment">//此处一定要挂载</span></span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="三、使用vuex与不适用vuex的区别："><a href="#三、使用vuex与不适用vuex的区别：" class="headerlink" title="三、使用vuex与不适用vuex的区别："></a>三、使用vuex与不适用vuex的区别：</h1><p>不用Vuex会带来一下问题：</p>
+<ol>
+<li><p>可维护性会下降：你要想修改数据，你得维护三个地方</p>
+</li>
+<li><p>可读性会下降：因为一个组件里的数据，你根本就看不出来是从哪来的</p>
+</li>
+<li><p>增加耦合：大量的上传<a href="https://www.baidu.com/s?wd=%E6%B4%BE%E5%8F%91&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">派发</a>，会让耦合性大大的增加。</p>
+<p>本来Vue用Component就是为了减少耦合，现在这么用，和组件化的初衷相背。但兄弟组件有大量通信的，建议一定要用，项目大小不论，以为回省下很多操作</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjt49wihw0003a8t6px4ax1kp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue技术总结2-页面间传递数据" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/vue技术总结2-页面间传递数据/" class="article-date">
+  <time datetime="2019-03-11T10:18:53.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>组件间的通信有三种：父传子，子传父，非父子之间的传值；可依据该方式进行组件关联及组件开发；</p>
+<h1 id="1-父传子-（用props）"><a href="#1-父传子-（用props）" class="headerlink" title="1. 父传子 （用props）"></a>1. 父传子 （用props）</h1><p>在父页面用到了子组件menu,showProps是要传给子组件的数据：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        showProps: &apos;父组件的数据&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;menu :menuText=&quot;showProps&quot;&gt;&lt;/menu&gt; //父组件引用子组件</span><br></pre></td></tr></table></figure>
+<p>在子组件页面中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">props: [ &apos;menuText&apos; ]</span><br><span class="line">console.log(this.menuText)</span><br></pre></td></tr></table></figure>
+<h1 id="2-子传父-（通过-on和-emit）"><a href="#2-子传父-（通过-on和-emit）" class="headerlink" title="2. 子传父 （通过$on和$emit）"></a>2. 子传父 （通过$on和$emit）</h1><p>子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">this.$emit(&apos;childByValue&apos;,this.child)   //childByValue在父组件on监听的方法，this.child,需要传的值</span><br></pre></td></tr></table></figure>
+<p>父：引入子组件，定义一个on的方法监听子组件的状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;child v-on:childByValue=&quot;childGetText&quot;&gt;&lt;/child&gt;</span><br><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        textValue: &apos;1111&apos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    childGetText: function(text)&#123;</span><br><span class="line">        this.textValue = text;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="3-非父子"><a href="#3-非父子" class="headerlink" title="3. 非父子"></a>3. 非父子</h1><h5 id="用bus总线或者vuex，此处讲bus，vuex随后一章"><a href="#用bus总线或者vuex，此处讲bus，vuex随后一章" class="headerlink" title="用bus总线或者vuex，此处讲bus，vuex随后一章"></a>用bus总线或者vuex，此处讲bus，vuex随后一章</h5><p>从组件A到组件B,建一个公共Bus.js,在Bus.js中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import Vue from &apos;vue&apos;</span><br><span class="line">export default new Vue()</span><br></pre></td></tr></table></figure>
+<p>A:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Bus.$emit(&apos;val&apos;,this.name1)</span><br></pre></td></tr></table></figure>
+<p>B:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Bus.$on(<span class="string">'val'</span>, (data)=&gt;&#123;</span><br><span class="line">    <span class="keyword">this</span>.name2 = data;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结2-页面间传递数据/" data-id="cjt49wih70001a8t6gc7qim9h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-vue技术总结1-vue-Router在项目中的使用" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" class="article-date">
+  <time datetime="2019-03-10T13:44:25.000Z" itemprop="datePublished">2019-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、路由权限判断"><a href="#一、路由权限判断" class="headerlink" title="一、路由权限判断"></a>一、路由权限判断</h2><p>路由有一个钩子函数叫做beforeEach，有三个参数：<br>to：路由即将要进入的目标，是个对象；<br>from：路由即将要离开的目标，是个对象；<br>next：一定要调用该方法来resolve这个钩子函数；执行效果看呢系方法的参数：<br>&nbsp;&nbsp;&nbsp;&nbsp; 正常使用next()，进入下一个钩子，如果执行完，则进入正常跳转的下一个页面；<br>&nbsp;&nbsp;&nbsp;&nbsp; next(false)，中断当前的当好。如果浏览器的URL改变了（用户手动或浏览器后退），那么会重置到from对应的地址；<br>&nbsp;&nbsp;&nbsp;&nbsp; next({path:’/‘})，跳转到一个不同的地址，进入一个新导航。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to,from,next) =&gt; &#123;</span><br><span class="line">  if(to.meta &amp;&amp; to.meta.requireAuth==true)&#123;</span><br><span class="line">  //requireAuth 判断路由是否需要登录条件</span><br><span class="line">    if(localStorage.loginInfo!=undefined)&#123;</span><br><span class="line">      let role_id = JSON.parse(localStorage.loginInfo).role</span><br><span class="line">      if(to.meta.role == role_id || to.meta.role == 0)&#123;</span><br><span class="line">        next(); //表示正常跳转进入下一个页面</span><br><span class="line">      &#125;else if(to.meta.role==undefined)&#123;</span><br><span class="line">        next();</span><br><span class="line">      &#125;else&#123;</span><br><span class="line">        router.push(&#123;</span><br><span class="line">          path: &apos;/index&apos;</span><br><span class="line">        &#125;)  // push将index路由代表的页面添加到浏览器中，正常访问</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">      next()</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>对应的路由js文件配置大致如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">routes: [</span><br><span class="line">  &#123;</span><br><span class="line">      path: &apos;/index&apos;,</span><br><span class="line">      name: &apos;主页&apos;,</span><br><span class="line">      component: resolve =&gt; require([&apos;@/pages/index&apos;], resolve)</span><br><span class="line">      // 此处使用钩子函数引入待加载文件的方式，可以优化加载性能，使得文件被需要的时候再被加载</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      path: &apos;/personal&apos;,</span><br><span class="line">      name: &apos;个人设置页面&apos;,</span><br><span class="line">      component: resolve =&gt; require([&apos;@/pages/personal&apos;], resolve),</span><br><span class="line">      meta: &#123;</span><br><span class="line">        requireAuth: true, // 限定路由需要登录条件</span><br><span class="line">        role: 1 //自定义角色身份id</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ......</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<h2 id="二、更多的路由钩子函数"><a href="#二、更多的路由钩子函数" class="headerlink" title="二、更多的路由钩子函数"></a>二、更多的路由钩子函数</h2><p>VueRouter的钩子函数主要分以下三种：</p>
+<h5 id="1-全局导航钩子"><a href="#1-全局导航钩子" class="headerlink" title="1. 全局导航钩子"></a>1. 全局导航钩子</h5><p>该类钩子主要作用于全局，一般用来判断权限，以及页面丢失时候需要执行的操作<br>router.beforeEach(to, from, next)<br>router.beforeResolve(to, from, next)<br>router.afterEach(to, from, next) ，此处的next参数则没有必要</p>
+<h5 id="2-组件内钩子"><a href="#2-组件内钩子" class="headerlink" title="2. 组件内钩子"></a>2. 组件内钩子</h5><p>主要包括 beforeRouteEnter和beforeRouteUpdate ,beforeRouteLeave,这几个钩子都是写在组件里面也可以传三个参数(to,from,next),作用与前面类似.</p>
+<p>beforeRouteEnter、beforeRouteUpdate、beforeRouteLeave</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">beforeRouteEnter(to, <span class="keyword">from</span>, next) &#123;</span><br><span class="line">    next(<span class="function"><span class="params">vm</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        vm.$route.meta.hasOwnProperty(<span class="string">'auth_key'</span>) &amp;&amp;</span><br><span class="line">        vm.$route.meta.auth_key != <span class="string">''</span></span><br><span class="line">      ) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!vm.hasPermission(vm.$route.meta.auth_key)) &#123;</span><br><span class="line">          vm.$router.replace(<span class="string">'/admin/noPermission'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<h5 id="3-单独路由独享组件"><a href="#3-单独路由独享组件" class="headerlink" title="3. 单独路由独享组件"></a>3. 单独路由独享组件</h5><p>主要用于写某个指定路由跳转时需要执行的逻辑</p>
+<p>beforeEnter<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    path: &apos;/index&apos;,</span><br><span class="line">    component: resolve =&gt; require([&apos;../pages/index.vue&apos;], resolve),</span><br><span class="line">    meta: &#123; title: &apos;系统首页&apos; &#125;,</span><br><span class="line">    beforeEnter: (to, from, next) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line">    beforeLeave: (to, from, next) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    &#125;                </span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" data-id="cjt49wig60000a8t6fgztv49f" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-将hexo博客转移到另一电脑" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/10/将hexo博客转移到另一电脑/" class="article-date">
@@ -101,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/将hexo博客转移到另一电脑/" data-id="cjt2m38oc0000b4t6ewsqx94c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/将hexo博客转移到另一电脑/" data-id="cjt49wiil0008a8t6qbq4f5p1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li></ul>
@@ -159,7 +413,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/windows上hexo搭建GitHub-Page博客/" data-id="cjt2m38ok0001b4t6nekf776w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/windows上hexo搭建GitHub-Page博客/" data-id="cjt49wiia0005a8t62j4x19ha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li></ul>
@@ -184,7 +438,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
     </div>
   </div>
 
@@ -194,7 +448,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a>
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a>
     </div>
   </div>
 
@@ -216,11 +470,23 @@
       <ul>
         
           <li>
-            <a href="/2019/03/10/将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
+            <a href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
           </li>
         
           <li>
-            <a href="/2019/01/25/windows上hexo搭建GitHub-Page博客/">windows上hexo搭建GitHub Page博客</a>
+            <a href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/10/将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
           </li>
         
       </ul>
