@@ -7,18 +7,18 @@
   
   <title>vue基本知识 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1、指令、 v-if vs v-for 自定义 2、修改引入插件样式 3、">
+  <meta name="description" content="1、指令、 v-if vs v-for ​    当 Vue 处理指令时，v-for 比 v-if 具有更高的优先级，通过v-if 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 v-if 为否的时候运算 v-for。永远不要把v-if和v-for同时用在同一元素上。 自定义 2、修改引入插件样式  vue引用外部插件 发现内部style无法更改插件样式的解">
 <meta name="keywords" content="vue基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue基本知识">
 <meta property="og:url" content="http://yoursite.com/2019/03/11/vue基本知识/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="1、指令、 v-if vs v-for 自定义 2、修改引入插件样式 3、">
+<meta property="og:description" content="1、指令、 v-if vs v-for ​    当 Vue 处理指令时，v-for 比 v-if 具有更高的优先级，通过v-if 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 v-if 为否的时候运算 v-for。永远不要把v-if和v-for同时用在同一元素上。 自定义 2、修改引入插件样式  vue引用外部插件 发现内部style无法更改插件样式的解">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-11T14:41:49.251Z">
+<meta property="og:updated_time" content="2019-03-12T06:48:54.701Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue基本知识">
-<meta name="twitter:description" content="1、指令、 v-if vs v-for 自定义 2、修改引入插件样式 3、">
+<meta name="twitter:description" content="1、指令、 v-if vs v-for ​    当 Vue 处理指令时，v-for 比 v-if 具有更高的优先级，通过v-if 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 v-if 为否的时候运算 v-for。永远不要把v-if和v-for同时用在同一元素上。 自定义 2、修改引入插件样式  vue引用外部插件 发现内部style无法更改插件样式的解">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -89,14 +89,35 @@
       
         <p>1、指令、</p>
 <p>v-if vs v-for</p>
+<p>​    当 Vue 处理指令时，v-for 比 v-if 具有更高的优先级，通过v-if 移动到容器元素，不会再重复遍历列表中的每个值。取而代之的是，我们只检查它一次，且不会在 v-if 为否的时候运算 v-for。永远不要把v-if和v-for同时用在同一元素上。</p>
 <p>自定义</p>
 <p>2、修改引入插件样式</p>
-<p>3、</p>
-
+<ul>
+<li>vue引用外部插件 发现内部style无法更改插件样式的解决办法（基于scoped添加限制每个页面样式的前提），假设插件引用上一级的样式为’.a’，需要更改控制的样式为’.b’</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1、.a   /deep/  .b &#123;&#125;   </span><br><span class="line">2、.a &gt;&gt;&gt; .b &#123;&#125; </span><br><span class="line">3、去掉scoped，转为全局的样式</span><br></pre></td></tr></table></figure>
+<p>关于样式的使用，还有以下的建议：</p>
+<p>​    在vue中管理样式的时候，不止要使用scoped特性，使用唯一的class名可以帮你确保那些三房库的css不会运用到你自己的HTML上。比如许多工程常用的button、btn、icon等class名，所以添加一个APP专属或组件专属的前缀（比如ButtonClose-icon）也可以提供很多保护。</p>
+<p>3、路由跳转页面的操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">this.$router.push(&#123;path:”/Login”&#125;); 跳转到不同的url，但这个方法回向history栈添加一个记录，点击后退会返回到上一个页面。push中可以设置字符串:&apos;login&apos;，对象:&#123;path: &apos;login&apos;&#125;,命名的路由：&#123;name: &apos;login&apos;, params: &#123;id: 1&#125;&#125;，带查询参数（可转化成/register?a=&apos;aa&apos;）：&#123;path：&apos;register&apos;, query: &#123;a: &apos;aa&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">this.$router.replace(&#123;path:”/Login”&#125;); 同样是跳转到指定的url，但是这个方法不会向history里面添加新的记录，点击返回，会跳转到上上一个页面。上一个记录是不存在的。</span><br><span class="line"></span><br><span class="line">this.$router.go(number); 相对于当前页面向前或向后跳转多少个页面,类似 window.history.go(n)。n可为正数可为负数。正数返回上一个页面</span><br></pre></td></tr></table></figure>
+<p>4、vue双向绑定原理：</p>
+<p>​    vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过Object.defineProperty()来劫持各个属性的setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。</p>
+<p>​    vue具有响应式布局，不是媒体查询的响应式布局，而是对数据变化进行响应的布局；组件开发，模块分装成一个个，便于开发；虚拟DOM，在计算完成最终的dom操作之前，使用的都是预处理操作，并没有操作真实的DOM，然后再将DOM操作变化反映到DOM树上。</p>
+<p>​    虚拟DOM：“虚拟 DOM”是由 Vue 组件树建立起来的整个 VNode 树的称呼。思想是：对复杂的文档DOM结构，提供一种方便的工具，进行最小化DOM操作。</p>
+<p>​    VNode：Vue在 页面上渲染的节点，及其子节点称为“虚拟节点 (Virtual Node)”，简写为“VNode”。</p>
+<p>5、webpack</p>
+<p>webpack的打包效用：整合所有的素材请求，只进行一次TCP握手和挥手的过程，就把多个资源给下载下来。多个资源共享一个HTTP请求，所以head部分也是共享的，相当于形成了规模效应，让网页展现的更快，用户体验更好。</p>
+<p>6、MVVM模式：</p>
+<p>​    Model-View-ViewModel；vue是以数据为驱动的，一旦创建dom和数据就保持同步，每当数据发生变化时，dom也会变化。DOMListener和DataBindings是实现双向绑定的关键。DOMListener监听页面所有View层DOM元素的变化，当发生变化，Model的数据随之变化；DataBindings监听Model层的数据，当数据发生变化，View层的DOM元素随之变化。</p>
+<p>7、vue生命周期：</p>
+<p>​    vue生命周期：Vue实例从创建到销毁的过程；开始创建、初始化数据、编译模板、挂载DOM-&gt;渲染、更新-&gt;渲染、卸载等过程。</p>
+<p>​    生命周期有多个钩子函数，可以让我们在整个Vue实例运行过程中养成良好的处理数据逻辑。</p>
+<p>​    生命周期总共分为八个阶段：创建前/后，载入前/后，更新前/后，销毁前/后。所以也是很好理解和记忆的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">beforeCreate:</span><br><span class="line">// loading，在加载实例时触发</span><br><span class="line">// 在实例初始化之后，数据观测(data observer) 和 event/watcher 事件配置之前被调用。</span><br><span class="line">Created:</span><br><span class="line">// 初始化完成的写在卸载这里：如结束loading。</span><br><span class="line">// 实例已经创建完成之后被调用。在这一步，实例已完成以下的配置：数据观测(data observer)，属性和方法的运算， watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。</span><br><span class="line">beforeMount:</span><br><span class="line">// 在挂载开始之前被调用：相关的 render 函数首次被调用。</span><br><span class="line">Mounted:</span><br><span class="line">// 挂载元素，获取到DOM节点；第一次加载触发到这一步</span><br><span class="line">beforeUpdate:</span><br><span class="line">// 数据更新时调用，发生在虚拟 DOM 重新渲染和打补丁之前。 你可以在这个钩子中进一步地更改状态，这不会触发附加的重渲染过程。</span><br><span class="line">Updated:</span><br><span class="line">// 如果对数据统一处理，可在这里调用相应函数</span><br><span class="line">//由于数据更改导致的虚拟 DOM 重新渲染和打补丁，在这之后会调用该钩子。当这个钩子被调用时，组件 DOM 已经更新，所以你现在可以执行依赖于 DOM 的操作。然而在大多数情况下，你应该避免在此期间更改状态，因为这可能会导致更新无限循环。该钩子在服务器端渲染期间不被调用</span><br><span class="line">beforeDestory:</span><br><span class="line">// 实例销毁之前调用。在这一步，实例仍然完全可用。</span><br><span class="line">Destoryed:</span><br><span class="line">// Vue 实例销毁后调用。调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。 该钩子在服务器端渲染期间不被调用。</span><br><span class="line">此处解释有参考：https://www.cnblogs.com/fly_dragon/p/6220273.html</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue基本知识/" data-id="cjt567hri000858t6qm70i7wz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue基本知识/" data-id="cjt5f0zyz0005qct6py60r45o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue基础/">vue基础</a></li></ul>
