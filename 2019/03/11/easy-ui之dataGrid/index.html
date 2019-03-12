@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-11T14:35:43.832Z">
+<meta property="og:updated_time" content="2019-03-12T02:33:49.264Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="easy-ui之dataGrid">
 <meta name="twitter:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
@@ -93,37 +93,20 @@
 <p>(1)datagrid 参数字段 </p>
 <p>​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges</p>
 <p>(2)data-options 属性 可以设置的内容：</p>
-<p>url:</p>
-<p>singSelect:</p>
-<p>toolbar:</p>
-<p>method:</p>
-<p>onClickRow:</p>
-<p>sortable:true/false;</p>
-<p>remoteSort:false/true;</p>
-<p>multiSort:true/false;</p>
-<p>collapsible:true/false;</p>
-<p>rownumbers:true;</p>
-<p>onLoadSuccess:function(){</p>
-<p>​    $(this).datagrid(‘freezeRow’,0).datagrid(‘freezeRow’,1);</p>
-<p>};</p>
-<p>frozen:true/false;  在不需要变化的地方设置frozen=true;</p>
-<p>formatter:  js的function名</p>
-<p>​         js的function名：funtion(val,row){     } ;</p>
-<p>hideColumn – item.name</p>
-<p>showColumn – item.name</p>
-<p>(3)var cmenu = $(‘<div>’).appendTo(‘body’);</div></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">url:</span><br><span class="line"></span><br><span class="line">singSelect:</span><br><span class="line"></span><br><span class="line">toolbar:</span><br><span class="line"></span><br><span class="line">method:</span><br><span class="line"></span><br><span class="line">onClickRow:</span><br><span class="line"></span><br><span class="line">sortable:true/false;</span><br><span class="line"></span><br><span class="line">remoteSort:false/true;</span><br><span class="line"></span><br><span class="line">multiSort:true/false;</span><br><span class="line"></span><br><span class="line">collapsible:true/false;</span><br><span class="line"></span><br><span class="line">rownumbers:true;</span><br><span class="line"></span><br><span class="line">onLoadSuccess:function()&#123;</span><br><span class="line"></span><br><span class="line">    $(this).datagrid(&apos;freezeRow&apos;,0).datagrid(&apos;freezeRow&apos;,1);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">frozen:true/false;  在不需要变化的地方设置frozen=true;</span><br><span class="line"></span><br><span class="line">formatter:  js的function名</span><br><span class="line"></span><br><span class="line">         js的function名：funtion(val,row)&#123;     &#125; ;</span><br><span class="line"></span><br><span class="line">hideColumn -- item.name</span><br><span class="line"></span><br><span class="line">showColumn -- item.name</span><br></pre></td></tr></table></figure>
+<p>(3)</p>
+<p>var cmenu = $(‘<div>’).appendTo(‘body’);</div></p>
 <p>cmenu.menu({ onclick： })</p>
 <p>datagrid的format有三个参数（value,rowDatas,rowIndex)，rowDatas是整列的数据，value应该对应着某一列的值，rowIndex应该是某列的排序，</p>
 <p>​        </p>
 <p>在此列下传参的JavaScript的参数只能是rowIndex，必要情况下可以借由数组来更新。</p>
-<p>$(“#aa”).datagrid(‘showColumn’,’XXX’);</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#aa&quot;).datagrid(&apos;hideColumn&apos;,&apos;XXX&apos;);   显示和隐藏，正常的display等的编辑是不起效果的。</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#aa&quot;).datagrid(&apos;showColumn&apos;,&apos;XXX&apos;); // item.name</span><br><span class="line">$(&quot;#aa&quot;).datagrid(&apos;hideColumn&apos;,&apos;XXX&apos;); //  显示和隐藏，正常的display等的编辑是不起效果的。</span><br></pre></td></tr></table></figure>
 <p>不过，也要意识到，当自己解决一个问题时，可以将解决办法以及对应效果进行记录和整理，方便观察失败的原因，对比查漏解决的办法，或许只是自己用错方法了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/easy-ui之dataGrid/" data-id="cjt4ghdf200019wt6v8bofnvg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/easy-ui之dataGrid/" data-id="cjt567hr0000158t6epxttp80" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li></ul>

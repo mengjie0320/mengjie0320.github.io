@@ -15,12 +15,10 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="ztree学习：http://www.treejs.cn/v3/api.php  // 1 原型$.fn.zTree 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="file:///C:/Users/admin/Documents/My%20Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png">
-<meta property="og:updated_time" content="2019-03-11T14:25:45.259Z">
+<meta property="og:updated_time" content="2019-03-12T02:34:52.354Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ztree树结构总结">
 <meta name="twitter:description" content="ztree学习：http://www.treejs.cn/v3/api.php  // 1 原型$.fn.zTree 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747">
-<meta name="twitter:image" content="file:///C:/Users/admin/Documents/My%20Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -98,24 +96,12 @@
 <ul>
 <li>ztree新知识点补充：（不用重新刷新的更新节点方式，对象）</li>
 </ul>
-<p>//1、获取zTree对象</p>
-<p>var treeObj = $.fn.zTree.getZTreeObj(“ztreeDemo”);</p>
-<p>//2、找到要修改的树的节点</p>
-<p>var treeNode = treeObj.getNodeByParam(“task_id”,tree_id);</p>
-<p>//3、为要修改的节点赋值</p>
-<p>treeNode.name = tree_name;</p>
-<p>//4、修改该节点上的值</p>
-<p>treeObj.updateNode(treeNode);</p>
-<p>补充，添加节点：addNodes（如果与等级无关，其实也是不用更新的）；</p>
-<p>addNodes(parentNode,index,newNodes,isSlient);</p>
-<p><img src="file:///C:/Users/admin/Documents/My Knowledge/temp/7193daa3-f6ff-483f-8568-469cf380b868/128/index_files/34eed89b-463c-4dfa-9877-4ff93f3fc1be.png" alt="img"></p>
-<p>removeNode移除（对象）</p>
-<p>treeObj.removeNode(nodes[j]);</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、获取zTree对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> treeObj = $.fn.zTree.getZTreeObj(<span class="string">"ztreeDemo"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、找到要修改的树的节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> treeNode = treeObj.getNodeByParam(<span class="string">"task_id"</span>,tree_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3、为要修改的节点赋值</span></span><br><span class="line"></span><br><span class="line">treeNode.name = tree_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4、修改该节点上的值</span></span><br><span class="line"></span><br><span class="line">treeObj.updateNode(treeNode);</span><br><span class="line"></span><br><span class="line">补充，添加节点：addNodes（如果与等级无关，其实也是不用更新的）；</span><br><span class="line"></span><br><span class="line">addNodes(parentNode,index,newNodes,isSlient);</span><br><span class="line"></span><br><span class="line"><span class="comment">//index：-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//isSlient：设定增加节点后是否自动展开父节点；true不展开；其他值或者缺省状态都自动展开。</span></span><br><span class="line"></span><br><span class="line">removeNode移除（对象）</span><br><span class="line"></span><br><span class="line">treeObj.removeNode(nodes[j]);</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/ztree树结构总结/" data-id="cjt4ghdfy000h9wt66hbs506i" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/ztree树结构总结/" data-id="cjt567hs0000h58t6xb5i2mfc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
