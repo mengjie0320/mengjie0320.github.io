@@ -62,15 +62,145 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-RESTful用法及与SOAP webserver比较" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/" class="article-date">
-  <time datetime="2019-04-17T12:29:07.857Z" itemprop="datePublished">2019-04-17</time>
+    <a href="/2019/04/27/RESTful用法及与SOAP webserver比较/" class="article-date">
+  <time datetime="2019-04-27T10:25:10.000Z" itemprop="datePublished">2019-04-27</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/27/RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目录：</p>
+<p>一、对RESTful的理解</p>
+<p>二、RESTful的使用方法</p>
+<p>三、URL、URI的区别</p>
+<p>四、REST与RESTful的关系与区别</p>
+<p>五、RESTful与SOAP的粗略比较（webservice）</p>
+<p>参考资料：</p>
+<blockquote>
+<p>理解RESTful架构 – 阮一峰  <a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/09/restful.html</a><br>RESTful API 最佳实践  – 阮一峰  <a href="http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/10/restful-api-best-practices.html</a><br>RESTful架构详解 – 菜鸟教程  <a href="https://www.runoob.com/w3cnote/restful-architecture.html" target="_blank" rel="noopener">https://www.runoob.com/w3cnote/restful-architecture.html</a>  </p>
+</blockquote>
+<p>整理笔记（以下主要是参考阮一峰的文章，菜鸟教程的也非常值得看）：</p>
+<p>​        RESTful是目前很流行的API设计规范，用于web数据接口的设计，尤其在前端nodejs工具的express框架中发挥了极大的作用。它首次出现在2000年Roy Fielding（此人很牛，划重点；REST的概念就是他提出来的，REST与RESTful的区别在后文）的博士论文中。</p>
+<h4 id="一、对RESTful的理解："><a href="#一、对RESTful的理解：" class="headerlink" title="一、对RESTful的理解："></a>一、对RESTful的理解：</h4><p>​        REST =》 Representational State Transfer，阮一峰大大的翻译是“表现层状态转化”，且认为少了一个主语：Resources（资源）。如果一个架构符合REST原则，就成为RESTful架构。下面从每个词的含义来理解整个规则。</p>
+<p>​       Resources 所谓”资源”，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，总之就是一个具体的实在。你可以用一个URI（统一资源定位符）指向它，每种资源对应一个特定的URI。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符。而所谓”上网”，就是与互联网上一系列的”资源”互动，调用它的URI。</p>
+<p>​       Representational： “资源”是一种信息实体URI，外在表现形式很多，而这个呈现出来的形式，就叫做它的“表现层”。严格地说，有些网址最后的”.html”后缀名是不必要的，因为这个后缀名表示格式，属于”表现层”范畴，而URI应该只代表”资源”的位置。它的具体表现形式，应该在HTTP请求的头信息中用Accept和Content-Type字段指定，这两个字段才是对”表现层”的描述。</p>
+<p>​       State Tranfer：在客户端与服务端互动的过程中，一定涉及到数据和状态的变化。而互联网通信协议http协议，是一个无状态协议。这意味着，所有状态保存在服务器端，如果客户端想要操作服务器，必须通过一定的方式，让服务器存储的状态发生转化。而这种转化是建立在表现层之上的，所以就是“表现层状态转化”。<strong>而客户端用到的手段，只能是HTTP协议</strong>。具体来说，就是HTTP协议里面，四个表示操作方式的动词：GET、POST、PUT、DELETE。它们分别对应四种基本操作：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源。</p>
+<p>​        所以，RESTful架构就是：(1)每个URI代表一种资源(2)客户端与服务端之间，传递这种资源的某种表现层(3)客户端通过四个http动词，对服务器端资源进行操作，实现“表现层状态转化”。</p>
+<p>​        RESTful架构有一些典型的设计误区：</p>
+<p>​        (1)URI包含动词：“资源”实体是名词，URI不应该有动词，动词应放在http协议中；</p>
+<p>​        POST /accounts/1/transfer/500/to/2</p>
+<p>​        POST /transaction HTTP/1.1</p>
+<p>　　 Host: 127.0.0.1</p>
+<p>　　 from=1&amp;to=2&amp;amount=500.00</p>
+<p>​        (2)在URI中加版本号：  因为不同的版本，可以理解成同一种资源的不同表现形式，所以应该采用同一个URI。版本号可以在HTTP请求头信息的Accept字段中进行区分。</p>
+<p>​        <a href="http://www.example.com/app/1.0/foo" target="_blank" rel="noopener">http://www.example.com/app/1.0/foo</a></p>
+<p>​        Accept: vnd.example-com.foo+json; version=1.0</p>
+<p>补充知识：URI与URL的区别：  在底部。</p>
+<h4 id="二、RESTful的使用方法："><a href="#二、RESTful的使用方法：" class="headerlink" title="二、RESTful的使用方法："></a>二、RESTful的使用方法：</h4><p>1、URL设计：“动词” + “宾语”</p>
+<p>​        其中，动词指的是HTTP的五种方法，对应CRUD操作（HTTP规范，动词一律应该大写）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">GET：读取（Read）</span><br><span class="line">POST：新建（Create）</span><br><span class="line">PUT：更新（Update）</span><br><span class="line">PATCH：更新（Update），通常是部分更新</span><br><span class="line">DELETE：删除（Delete）</span><br><span class="line"></span><br><span class="line">    POST和PUT在创建资源的区别在于，所创建的资源的名称(URI)是否由客户端决定。 例如为我的博文增加一个java的分类，生成的路径就是分类名/categories/java，那么就可以采用PUT方法。</span><br><span class="line">    统一接口并不阻止你扩展方法，只要方法对资源的操作有着具体的、可识别的语义即可，并能够保持整个接口的统一性。</span><br><span class="line">    需要注意的是，像PATCH这种不是HTTP标准方法的，服务端需要考虑客户端是否能够支持的问题。</span><br><span class="line">    即使你按各个动词的原本意图来使用它们，你仍可以轻易禁止缓存机制。 最简单的做法就是在你的HTTP响应里增加这样一个报头： Cache-control: no-cache。 但是，同时你也对失去了高效的缓存与再验证的支持(使用Etag等机制)。</span><br><span class="line"></span><br><span class="line">对于客户端来说，在为一个REST式服务实现程序客户端时，也应该充分利用现有的缓存机制，以免每次都重新获取表示。</span><br></pre></td></tr></table></figure>
+<p>​        而客户端只能使用GET及POST方法，服务器接收其他三种方法的时候，必须接受POST来模拟。模拟需借助“X-HTTP-Method-Override”属性，该属性的值即为要覆盖POST的方法：</p>
+<blockquote>
+<p>​    POST /api/Person/4 HTTP/1.1  </p>
+<p>​    X-HTTP-Method-Override: PUT</p>
+</blockquote>
+<p>​        其中，宾语必须是名词。而名词的形式一般建议采取复数，因为常见的操作是读取一个集合。</p>
+<p>​        除此之外，常见的情况，资源多级分类，但建议将多级URL转为“一级+参数”的形式。（“/”用来表示层级；“？”过滤资源；“_”或“-”URI可读性更好；“,”或“；”可以用来表示同级资源的关系）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /authors/12/categories/2    =》   GET /authors/12?categories=2</span><br><span class="line">GET /articles/published         =》   GET /articles?published=true</span><br></pre></td></tr></table></figure>
+<p>​        由于有时候不可能将所有信息返回提取显示，所以提供了过滤信息这一方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">?limit=10：指定返回记录的数量</span><br><span class="line">?offset=10：指定返回记录的开始位置。</span><br><span class="line">?page_number=2&amp;page_size=100：指定第几页，以及每页的记录数。</span><br><span class="line">?sortby=name&amp;order=asc：指定返回结果按照哪个属性排序，以及排序顺序。</span><br><span class="line">?animal_type_id=1：指定筛选条件</span><br><span class="line">参数的设计允许存在冗余，即允许API路径和URL参数偶尔有重复。比如，</span><br><span class="line">GET /zoo/ID/animals 与 GET /animals?zoo_id=ID 的含义是相同的。</span><br></pre></td></tr></table></figure>
+<p>2、状态码：客户端的每一次请求，服务器都必须给出回应。包括HTTP状态码 + 数据。分为五个类别：1XX：相关信息；2XX：操作成功；3XX：重定向；4XX：客户端错误；5XX：服务器错误。约么100多种，为的就是精确，涵盖尽可能多的情况。API一般不需要1XX，重点介绍其他四种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// 2XX：</span><br><span class="line">GET: 200 OK</span><br><span class="line">POST: 201 Created    生成了新资源</span><br><span class="line">PUT: 200 OK</span><br><span class="line">PATCH: 200 OK</span><br><span class="line">DELETE: 204 No Content  资源已经不存在</span><br><span class="line">202 Accepted状态码表示服务器已经收到请求，但还未进行处理，会在未来再处理，通常用于异步操作。</span><br><span class="line"></span><br><span class="line">// 3XX:</span><br><span class="line">   API 用不到301状态码（永久重定向）和302状态码（暂时重定向，307也是这个含义），因为它们可以由应用级别返回，浏览器会直接跳转，API 级别可以不考虑这两种情况。</span><br><span class="line">    API 用到的3xx状态码，主要是303 See Other，表示参考另一个 URL。它与302和307的含义一样，也是&quot;暂时重定向&quot;，区别在于302和307用于GET请求，而303用于POST、PUT和DELETE请求。收到303以后，浏览器不会自动跳转，而会让用户自己决定下一步怎么办。</span><br><span class="line">// 4xx：</span><br><span class="line">400 Bad Request：服务器不理解客户端的请求，未做任何处理。</span><br><span class="line">401 Unauthorized：用户未提供身份验证凭据，或者没有通过身份验证。</span><br><span class="line">403 Forbidden：用户通过了身份验证，但是不具有访问资源所需的权限。</span><br><span class="line">404 Not Found：所请求的资源不存在，或不可用。</span><br><span class="line">405 Method Not Allowed：用户已经通过身份验证，但是所用的 HTTP 方法不在他的权限之内。</span><br><span class="line">410 Gone：所请求的资源已从这个地址转移，不再可用。</span><br><span class="line">415 Unsupported Media Type：客户端要求的返回格式不支持。比如，API 只能返回 JSON 格式，但是客户端要求返回 XML 格式。</span><br><span class="line">422 Unprocessable Entity ：客户端上传的附件无法处理，导致请求失败。</span><br><span class="line">429 Too Many Requests：客户端的请求次数超过限额。</span><br><span class="line">// 5XX:</span><br><span class="line">5xx状态码表示服务端错误。一般来说，API 不会向用户透露服务器的详细信息，所以只要两个状态码就够了。</span><br><span class="line">500 Internal Server Error：客户端请求有效，服务器处理时发生了意外。</span><br><span class="line">503 Service Unavailable：服务器无法处理请求，一般用于网站维护状态。</span><br></pre></td></tr></table></figure>
+<p>3、服务器回应：</p>
+<p>​        现下开发模式基本上采取前后端分离，返回一个json对象便于操作数据，因此，服务器回应的HTTP头的Content-Type属性要设为“application/json”；客户端也要明确设置ACCEPT属性值为“application/json”。</p>
+<p>​        发生错误时，一定不要返回200。有的开发者会在200之后添加错误码code及msg信息，用来区分。但是此种控制下不建议采取该方式。</p>
+<p>​        API 的使用者未必知道，URL 是怎么设计的。一个解决方法就是，在回应中，给出相关链接，便于下一步操作。这样的话，用户只要记住一个 URL，就可以发现其他的 URL。这种方法叫做 HATEOAS。HATEOAS 的格式没有统一规定，上面例子中，GitHub 将它们与其他属性放在一起。更好的做法应该是，将相关链接与其他属性分开。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  &quot;feeds_url&quot;: &quot;https://api.github.com/feeds&quot;,</span><br><span class="line">  &quot;followers_url&quot;: &quot;https://api.github.com/user/followers&quot;,</span><br><span class="line">  &quot;following_url&quot;: &quot;https://api.github.com/user/following&#123;/target&#125;&quot;,</span><br><span class="line">  &quot;gists_url&quot;: &quot;https://api.github.com/gists&#123;/gist_id&#125;&quot;,</span><br><span class="line">  &quot;hub_url&quot;: &quot;https://api.github.com/hub&quot;,</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">  vs</span><br><span class="line">  </span><br><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Content-Type: application/json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;status&quot;: &quot;In progress&quot;,</span><br><span class="line">   &quot;links&quot;: &#123;[</span><br><span class="line">    &#123; &quot;rel&quot;:&quot;cancel&quot;, &quot;method&quot;: &quot;delete&quot;, &quot;href&quot;:&quot;/api/status/12345&quot; &#125; ,</span><br><span class="line">    &#123; &quot;rel&quot;:&quot;edit&quot;, &quot;method&quot;: &quot;put&quot;, &quot;href&quot;:&quot;/api/status/12345&quot; &#125;</span><br><span class="line">  ]&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="三、URL、URI的区别："><a href="#三、URL、URI的区别：" class="headerlink" title="三、URL、URI的区别："></a>三、URL、URI的区别：</h4><p>URL：(Uniform/Universal Resource Locator 的缩写，统一资源定位符)。</p>
+<p>URI：(Uniform Resource Identifier 的缩写，统一资源标识符)（代表一种标准）。</p>
+<p><img src="http://39.106.9.2/blogImg/2019-04-27url_uri.png" alt="img"></p>
+<ul>
+<li>URI – 统一资源标识符</li>
+</ul>
+<p>URI是使用一小串数字、字母和符号来识别文档的标准。它是在RFC 3986定义的：URI指的是通用句法。所有的URL、URN及URC都是URI。</p>
+<ul>
+<li>URL – 统一资源定位符</li>
+</ul>
+<p>URL中包含了如何通过其位置来获取资源的信息。例如：<br><a href="http://example.com/mypage.html" target="_blank" rel="noopener">http://example.com/mypage.html</a><br><a href="ftp://example.com/download.zip" target="_blank" rel="noopener">ftp://example.com/download.zip</a><br>mailto:<a href="mailto:user@example.com" target="_blank" rel="noopener">user@example.com</a><br>file:///home/user/file.txt<br>tel:1-888-555-5555<br><a href="http://example.com/resource?foo=bar#fragment" target="_blank" rel="noopener">http://example.com/resource?foo=bar#fragment</a><br>/other/link.html (一个相对URL，只有在另外一个完整的URL上下文中才有用)</p>
+<p>URL总是以一个协议头开始，通常包括诸如主机名(example.com)和一个文件路径(/foo/mypage.html)。URL可能也会有查询参数及片段识别符。</p>
+<ul>
+<li>URN – 统一资源名称</li>
+</ul>
+<p>URN通过一个唯一及持续的名字来标识资源，但却不必告诉你如何在网络上定位到它。它通常是以一个urn前缀的开头的。例如：<br>urn:isbn:0451450523 to identify a book by its ISBN number.<br>urn:uuid:6e8bc430-9c3a-11d9-9669-0800200c9a66 a globally unique identifier<br>urn:publishing:book - An XML namespace that identifies the document as a type of book.</p>
+<p>URN可以识别想法和概念。他们并不限于识别文件。当一个URN代表一个文件时，它可以被一个解析器转换成一条URL。然后这个文件就这个用转换后的URL下载了。</p>
+<ul>
+<li>URC – 统一资源引用符</li>
+</ul>
+<p>URC指的是一个文件的元数据，而不是文件本身。URC的一个例子是一个指定HTML网页的源代码，如：view-source:<a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
+<ul>
+<li>Data URI</li>
+</ul>
+<p>我们可以直接将数据放到一个URI中，而不是在互联网上定位或命名它。一个数据URI：data:,Hello%20World。</p>
+<p>来源： <a href="https://blog.51cto.com/xoyabc/1905492" target="_blank" rel="noopener">https://blog.51cto.com/xoyabc/1905492</a></p>
+<p>知乎高赞回答地址：<a href="https://www.zhihu.com/question/21950864" target="_blank" rel="noopener">https://www.zhihu.com/question/21950864</a> </p>
+<h4 id="四、REST与RESTful的关系与区别"><a href="#四、REST与RESTful的关系与区别" class="headerlink" title="四、REST与RESTful的关系与区别"></a>四、REST与RESTful的关系与区别</h4><p>RESTful是由REST派生出来的。</p>
+<p>REST：Representational State Transfer      表述性状态转移,是一种架构风格。<br>REST原则：<br>（1）、网络上的所有事物都被抽象为资源<br>（2）、每个资源都有一个唯一的资源标识符<br>（3）、 同一个资源具有多种表现形式(xml,json等)<br>（4）、 对资源的各种操作不会改变资源标识符<br>（5）、所有的操作都是无状态的</p>
+<p>RESTful: 遵守了REST原则 的web服务<br>理解：RESTful与REST相比，多了一个ful,就英语层面来说是一个形容词，RESTful翻译为中文为： “REST式的”<br>是REST式的什么呢？答案是REST式的应用，REST风格的web服务也是REST式的应用，REST式的web服务是一种ROA(The Resource-Oriented Architecture)(面向资源的架构)</p>
+<h4 id="五、RESTful与SOAP的粗略比较（webservice）"><a href="#五、RESTful与SOAP的粗略比较（webservice）" class="headerlink" title="五、RESTful与SOAP的粗略比较（webservice）"></a>五、RESTful与SOAP的粗略比较（webservice）</h4><p>首先需要了解：REST是一种架构风格，其核心是面向资源；而webService底层SOAP协议，主要核心是面向活动；</p>
+<p>WebService 是一种跨编程语言和跨操作系统平台的远程调用技术。其通过HTTP协议发送请求和接收结果时采用XML格式封装，并增加了一些特定的HTTP消息头，这些特定的HTTP消息头和XML内容格式就是SOAP协议。</p>
+<p><strong>对比</strong></p>
+<p>效率与易用性：SOAP由于各种需求不断扩充其本身协议的内容，导致在SOAP处理方面的性能有所下降。同时在易用性方面以及学习成本上也有所增加。而RESTful API 在请求方法、资源、地址都进行了规范，其最大限度的利用了HTTP最初的应用协议的设计理念。</p>
+<p>安全性：RESTful 对于资源型服务器接口比较适合，适合对于效率要求很高，但是对于安全要求不高的场景。SOAP 的成熟性可以给需要提供给多开发语言的，对于安全性的要求较高的接口设计带来便利，你可以在客户端和服务端应用证书进行安全措施。所以关键看应用场景。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/27/RESTful用法及与SOAP webserver比较/" data-id="cjuzd8ncx00006ot6l4wqgwl1" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/" class="article-date">
+  <time datetime="2019-04-17T12:31:54.000Z" itemprop="datePublished">2019-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -86,9 +216,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/" data-id="cjul711vc000qd0t6vcrw6dfx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/" data-id="cjuzd8nez000s6ot6jxdqo7uw" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li></ul>
+
     </footer>
   </div>
   
@@ -99,12 +231,22 @@
     <article id="post-iphone6的750x1334分辨率排版开发APP及小程序的原因" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/" class="article-date">
-  <time datetime="2019-04-17T12:27:59.296Z" itemprop="datePublished">2019-04-17</time>
+  <time datetime="2019-04-17T12:01:52.000Z" itemprop="datePublished">2019-04-17</time>
 </a>
     
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">iphone6的750x1334分辨率排版开发APP及小程序的原因</a>
+    </h1>
+  
+
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
@@ -185,9 +327,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/" data-id="cjul711u50005d0t6r2w60fmz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/" data-id="cjuzd8ndz00086ot6zlsxr5hk" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
+
     </footer>
   </div>
   
@@ -225,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/svg画数据库物理模型图/" data-id="cjul711u90008d0t6s9v4wb0j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/svg画数据库物理模型图/" data-id="cjuzd8ne100096ot63sw54mle" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li></ul>
@@ -272,7 +416,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/11/ajax请求本地json文件，谷歌浏览器报跨域错误/" data-id="cjul711th0000d0t68l97yabs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/11/ajax请求本地json文件，谷歌浏览器报跨域错误/" data-id="cjuzd8nd800016ot6k7r3tnme" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li></ul>
@@ -336,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue基本知识/" data-id="cjul711uh000bd0t6qn2p4nai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue基本知识/" data-id="cjuzd8ne6000d6ot6y43yw64f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue基础/">vue基础</a></li></ul>
@@ -389,7 +533,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/easy-ui之dataGrid/" data-id="cjul711u10003d0t61mqve25m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/easy-ui之dataGrid/" data-id="cjuzd8ndl00046ot6a497m96r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li></ul>
@@ -437,7 +581,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/ztree树结构总结/" data-id="cjul711v7000md0t6hg8lqw6q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/ztree树结构总结/" data-id="cjuzd8nev000p6ot67go8ez8z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
@@ -476,7 +620,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/canvas画图的使用总结/" data-id="cjul711tr0001d0t6avanywti" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/canvas画图的使用总结/" data-id="cjuzd8ndi00036ot6pm596llj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li></ul>
@@ -516,62 +660,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/" data-id="cjul711uc0009d0t6fkiups2p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/thinkphp3-2-react开发上传文件展示信息学习记录/" data-id="cjuzd8ne4000b6ot6jplq2tlv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-echarts组件使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/11/echarts组件使用总结/" class="article-date">
-  <time datetime="2019-03-11T13:58:11.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/echarts组件使用总结/">echarts组件使用总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>echarts的使用</li>
-</ul>
-<p>1、步骤：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">'echarts'</span></span><br><span class="line"></span><br><span class="line">Vue.prototype.$echarts = echarts;</span><br><span class="line"></span><br><span class="line">初始化echarts对象：   <span class="keyword">var</span> oneEcharts = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">"oneEcharts"</span>));</span><br><span class="line"></span><br><span class="line">设置option： grid,tooltip,legend,xAixs,yAixs,dataZoom,series,color,barMaxWidth</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> option = &#123;</span><br><span class="line"></span><br><span class="line">    grid:&#123;</span><br><span class="line"></span><br><span class="line">        y:<span class="number">45</span>,</span><br><span class="line"></span><br><span class="line">        y2:<span class="number">70</span>,</span><br><span class="line"></span><br><span class="line">        show:<span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    tooltip : &#123;</span><br><span class="line"></span><br><span class="line">        show: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// trigger: 'item',</span></span><br><span class="line"></span><br><span class="line">        formatter: <span class="function"><span class="keyword">function</span>(<span class="params">data_tooltips</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;p&gt;通过率&lt;/p&gt;&lt;span&gt;'</span>+ data_tooltips.name + <span class="string">':'</span> + data_tooltips.value +<span class="string">'%&lt;/span&gt;&lt;/br&gt;'</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    legend : &#123;</span><br><span class="line"></span><br><span class="line">        top:<span class="string">"1%"</span>,</span><br><span class="line"></span><br><span class="line">        right:<span class="string">"3%"</span>,</span><br><span class="line"></span><br><span class="line">        data : [<span class="string">'通过率'</span>]</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    xAxis : &#123;</span><br><span class="line"></span><br><span class="line">        data : xtemp,</span><br><span class="line"></span><br><span class="line">        name:<span class="string">'任务'</span>,</span><br><span class="line"></span><br><span class="line">        triggerEvent:<span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">        axisLabel : &#123;</span><br><span class="line"></span><br><span class="line">        interval: <span class="number">0</span>, <span class="comment">//横轴坐标显示全部</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// rotate: -30</span></span><br><span class="line"></span><br><span class="line">            formatter:<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(xtemp.length &gt;= <span class="number">4</span>) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> value.split(<span class="string">""</span>).join(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> value;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    yAxis : &#123;</span><br><span class="line"></span><br><span class="line">        name:<span class="string">'%'</span>,</span><br><span class="line"></span><br><span class="line">        min:<span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">        max:<span class="number">100</span></span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    dataZoom: [</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">        id: <span class="string">'dataZoomX'</span>,</span><br><span class="line"></span><br><span class="line">        type: <span class="string">'inside'</span>,</span><br><span class="line"></span><br><span class="line">        xAxisIndex: [<span class="number">0</span>],</span><br><span class="line"></span><br><span class="line">        filterMode: <span class="string">'filter'</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    series : [&#123;</span><br><span class="line"></span><br><span class="line">        name : <span class="string">'通过率'</span>,</span><br><span class="line"></span><br><span class="line">        type : <span class="string">'bar'</span>,</span><br><span class="line"></span><br><span class="line">        data : series,</span><br><span class="line"></span><br><span class="line">        itemStyle:&#123;</span><br><span class="line"></span><br><span class="line">        emphasis:&#123;</span><br><span class="line"></span><br><span class="line">        color:<span class="string">'#FFFC00'</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    barMaxWidth:<span class="string">'20px'</span></span><br><span class="line"></span><br><span class="line">    &#125;],</span><br><span class="line"></span><br><span class="line">    color:[<span class="string">'#007AD0'</span>]</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>绑定option：  oneEcharts.setOption(option);</p>
-<p>2、事件：</p>
-<p>oneEcharts.on(‘click’,function(params) {})</p>
-<p>params的内容包括：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param.name: X轴的值</span><br><span class="line">param.data: Y轴的值</span><br><span class="line">param.value: Y轴的值</span><br><span class="line">param.type: 点击事件均为click</span><br><span class="line">param.seriesName: legend的名称</span><br><span class="line">param.seriesIndex: 系列序号（series中当前图形是第几个图形第几个）</span><br><span class="line">param.dataIndex: 数值序列（X轴上当前点是第几个点）</span><br></pre></td></tr></table></figure>
-<p>取消事件的重复： oneEcharts.off(‘click’);</p>
-<p>重置图形：先清除 oneEcharts.clear();</p>
-<p>3、echarts x轴文字显示不全(xAxis文字倾斜比较全面的3种做法值得推荐)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//xAxis.axisLabel 属性，grid辅助</span><br><span class="line"></span><br><span class="line">axisLabel: &#123; interval:0, rotate:40&#125;</span><br><span class="line"></span><br><span class="line">grid: &#123;left: &apos;10%&apos;,bottom:&apos;35%&apos;&#125;,</span><br><span class="line"></span><br><span class="line">//   使文字竖直显示 formatter:function(value,index)&#123;&#125; ，value是类目（测试医院A，人民医院）,index 是类目索引。 </span><br><span class="line"></span><br><span class="line">//   利用index使间隔一个换一行</span><br><span class="line"></span><br><span class="line">axisLabel : &#123;</span><br><span class="line"></span><br><span class="line">    interval: 0, //横轴坐标显示全部</span><br><span class="line"></span><br><span class="line">    // rotate: -30</span><br><span class="line"></span><br><span class="line">    formatter:function(value)&#123;</span><br><span class="line"></span><br><span class="line">        if(xtemp.length &gt;= 4) &#123;</span><br><span class="line"></span><br><span class="line">        return value.split(&quot;&quot;).join(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;else&#123;</span><br><span class="line"></span><br><span class="line">            return value;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/echarts组件使用总结/" data-id="cjul711u30004d0t6id814xxh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li></ul>
 
     </footer>
   </div>
@@ -598,7 +690,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
     </div>
   </div>
 
@@ -608,7 +700,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a>
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
     </div>
   </div>
 
@@ -630,11 +722,15 @@
       <ul>
         
           <li>
-            <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">(no title)</a>
+            <a href="/2019/04/27/RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">(no title)</a>
+            <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">iphone6的750x1334分辨率排版开发APP及小程序的原因</a>
           </li>
         
           <li>
@@ -643,10 +739,6 @@
         
           <li>
             <a href="/2019/04/11/ajax请求本地json文件，谷歌浏览器报跨域错误/">ajax请求本地json文件，谷歌浏览器报跨域错误</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/11/vue基本知识/">vue基本知识</a>
           </li>
         
       </ul>

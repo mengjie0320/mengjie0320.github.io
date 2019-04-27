@@ -62,6 +62,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-echarts组件使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/echarts组件使用总结/" class="article-date">
+  <time datetime="2019-03-11T13:58:11.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/echarts组件使用总结/">echarts组件使用总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>echarts的使用</li>
+</ul>
+<p>1、步骤：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">'echarts'</span></span><br><span class="line"></span><br><span class="line">Vue.prototype.$echarts = echarts;</span><br><span class="line"></span><br><span class="line">初始化echarts对象：   <span class="keyword">var</span> oneEcharts = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">"oneEcharts"</span>));</span><br><span class="line"></span><br><span class="line">设置option： grid,tooltip,legend,xAixs,yAixs,dataZoom,series,color,barMaxWidth</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> option = &#123;</span><br><span class="line"></span><br><span class="line">    grid:&#123;</span><br><span class="line"></span><br><span class="line">        y:<span class="number">45</span>,</span><br><span class="line"></span><br><span class="line">        y2:<span class="number">70</span>,</span><br><span class="line"></span><br><span class="line">        show:<span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    tooltip : &#123;</span><br><span class="line"></span><br><span class="line">        show: <span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">        <span class="comment">// trigger: 'item',</span></span><br><span class="line"></span><br><span class="line">        formatter: <span class="function"><span class="keyword">function</span>(<span class="params">data_tooltips</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;p&gt;通过率&lt;/p&gt;&lt;span&gt;'</span>+ data_tooltips.name + <span class="string">':'</span> + data_tooltips.value +<span class="string">'%&lt;/span&gt;&lt;/br&gt;'</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    legend : &#123;</span><br><span class="line"></span><br><span class="line">        top:<span class="string">"1%"</span>,</span><br><span class="line"></span><br><span class="line">        right:<span class="string">"3%"</span>,</span><br><span class="line"></span><br><span class="line">        data : [<span class="string">'通过率'</span>]</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    xAxis : &#123;</span><br><span class="line"></span><br><span class="line">        data : xtemp,</span><br><span class="line"></span><br><span class="line">        name:<span class="string">'任务'</span>,</span><br><span class="line"></span><br><span class="line">        triggerEvent:<span class="literal">true</span>,</span><br><span class="line"></span><br><span class="line">        axisLabel : &#123;</span><br><span class="line"></span><br><span class="line">        interval: <span class="number">0</span>, <span class="comment">//横轴坐标显示全部</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// rotate: -30</span></span><br><span class="line"></span><br><span class="line">            formatter:<span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span>(xtemp.length &gt;= <span class="number">4</span>) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> value.split(<span class="string">""</span>).join(<span class="string">"\n"</span>);</span><br><span class="line"></span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> value;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    yAxis : &#123;</span><br><span class="line"></span><br><span class="line">        name:<span class="string">'%'</span>,</span><br><span class="line"></span><br><span class="line">        min:<span class="number">0</span>,</span><br><span class="line"></span><br><span class="line">        max:<span class="number">100</span></span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    dataZoom: [</span><br><span class="line"></span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">        id: <span class="string">'dataZoomX'</span>,</span><br><span class="line"></span><br><span class="line">        type: <span class="string">'inside'</span>,</span><br><span class="line"></span><br><span class="line">        xAxisIndex: [<span class="number">0</span>],</span><br><span class="line"></span><br><span class="line">        filterMode: <span class="string">'filter'</span></span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">    series : [&#123;</span><br><span class="line"></span><br><span class="line">        name : <span class="string">'通过率'</span>,</span><br><span class="line"></span><br><span class="line">        type : <span class="string">'bar'</span>,</span><br><span class="line"></span><br><span class="line">        data : series,</span><br><span class="line"></span><br><span class="line">        itemStyle:&#123;</span><br><span class="line"></span><br><span class="line">        emphasis:&#123;</span><br><span class="line"></span><br><span class="line">        color:<span class="string">'#FFFC00'</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    barMaxWidth:<span class="string">'20px'</span></span><br><span class="line"></span><br><span class="line">    &#125;],</span><br><span class="line"></span><br><span class="line">    color:[<span class="string">'#007AD0'</span>]</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>绑定option：  oneEcharts.setOption(option);</p>
+<p>2、事件：</p>
+<p>oneEcharts.on(‘click’,function(params) {})</p>
+<p>params的内容包括：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param.name: X轴的值</span><br><span class="line">param.data: Y轴的值</span><br><span class="line">param.value: Y轴的值</span><br><span class="line">param.type: 点击事件均为click</span><br><span class="line">param.seriesName: legend的名称</span><br><span class="line">param.seriesIndex: 系列序号（series中当前图形是第几个图形第几个）</span><br><span class="line">param.dataIndex: 数值序列（X轴上当前点是第几个点）</span><br></pre></td></tr></table></figure>
+<p>取消事件的重复： oneEcharts.off(‘click’);</p>
+<p>重置图形：先清除 oneEcharts.clear();</p>
+<p>3、echarts x轴文字显示不全(xAxis文字倾斜比较全面的3种做法值得推荐)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">//xAxis.axisLabel 属性，grid辅助</span><br><span class="line"></span><br><span class="line">axisLabel: &#123; interval:0, rotate:40&#125;</span><br><span class="line"></span><br><span class="line">grid: &#123;left: &apos;10%&apos;,bottom:&apos;35%&apos;&#125;,</span><br><span class="line"></span><br><span class="line">//   使文字竖直显示 formatter:function(value,index)&#123;&#125; ，value是类目（测试医院A，人民医院）,index 是类目索引。 </span><br><span class="line"></span><br><span class="line">//   利用index使间隔一个换一行</span><br><span class="line"></span><br><span class="line">axisLabel : &#123;</span><br><span class="line"></span><br><span class="line">    interval: 0, //横轴坐标显示全部</span><br><span class="line"></span><br><span class="line">    // rotate: -30</span><br><span class="line"></span><br><span class="line">    formatter:function(value)&#123;</span><br><span class="line"></span><br><span class="line">        if(xtemp.length &gt;= 4) &#123;</span><br><span class="line"></span><br><span class="line">        return value.split(&quot;&quot;).join(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">        &#125;else&#123;</span><br><span class="line"></span><br><span class="line">            return value;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/echarts组件使用总结/" data-id="cjuzd8ndv00056ot6sghzjuhy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-vue技术总结4-axios及其代理配置" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/11/vue技术总结4-axios及其代理配置/" class="article-date">
@@ -121,7 +173,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/" data-id="cjul711uz000jd0t6ybbrwspk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/" data-id="cjuzd8neo000l6ot61h8n6eh9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li></ul>
@@ -205,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjul711um000fd0t6j8wdq504" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjuzd8nel000j6ot6lthqwm2y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li></ul>
@@ -257,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结2-页面间传递数据/" data-id="cjul711uu000hd0t6v9qq9j1j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/vue技术总结2-页面间传递数据/" data-id="cjuzd8nej000h6ot6qbhi5ysq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
@@ -305,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" data-id="cjul711uk000dd0t6m6qlnym1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" data-id="cjuzd8ned000f6ot6cqr70mq3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li></ul>
@@ -356,7 +408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/将hexo博客转移到另一电脑/" data-id="cjul711v9000pd0t6xek7p8ta" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/将hexo博客转移到另一电脑/" data-id="cjuzd8nex000q6ot6fxoliz0l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li></ul>
@@ -414,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/windows上hexo搭建GitHub-Page博客/" data-id="cjul711v4000ld0t6uf0wqngs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/01/25/windows上hexo搭建GitHub-Page博客/" data-id="cjuzd8ner000m6ot68x7t92hc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li></ul>
@@ -444,7 +496,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
     </div>
   </div>
 
@@ -454,7 +506,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a>
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
     </div>
   </div>
 
@@ -476,11 +528,15 @@
       <ul>
         
           <li>
-            <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">(no title)</a>
+            <a href="/2019/04/27/RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">(no title)</a>
+            <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">iphone6的750x1334分辨率排版开发APP及小程序的原因</a>
           </li>
         
           <li>
@@ -489,10 +545,6 @@
         
           <li>
             <a href="/2019/04/11/ajax请求本地json文件，谷歌浏览器报跨域错误/">ajax请求本地json文件，谷歌浏览器报跨域错误</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/11/vue基本知识/">vue基本知识</a>
           </li>
         
       </ul>
