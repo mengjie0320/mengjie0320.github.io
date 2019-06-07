@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>vue技术总结3 -- vuex | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。 一、vuex的属性State、 Getter、Mutation 、Action、 Module sto">
+<meta name="keywords" content="vue、vuex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue技术总结3 -- vuex">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/19-03-11vue技术总结3-vuex/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。 一、vuex的属性State、 Getter、Mutation 、Action、 Module sto">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-11T13:56:43.733Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vue技术总结3 -- vuex">
+<meta name="twitter:description" content="​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。 一、vuex的属性State、 Getter、Mutation 、Action、 Module sto">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-19-03-11vue技术总结3-vuex" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-11vue技术总结3-vuex/" class="article-date">
+  <time datetime="2019-03-11T10:32:37.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue技术总结3 -- vuex
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    vuex是一个专门为vue.js应用程序开发的状态管理模式。它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。<br>​    vuex作为一个状态管理，可以使得全局共享相同的数据，因此常用来保存登录以及用户个人数据。可以解决非父子组件之间的数据传递。</p>
+<h1 id="一、vuex的属性"><a href="#一、vuex的属性" class="headerlink" title="一、vuex的属性"></a>一、vuex的属性</h1><p>State、 Getter、Mutation 、Action、 Module</p>
+<p>store的属性：state、mutations、action、getters</p>
+<h5 id="1-1、state"><a href="#1-1、state" class="headerlink" title="1.1、state"></a>1.1、state</h5><p>​        state为单一状态树，在state中需要定义我们所需要管理的数组、对象、字符串等等，只有在这里定义了，在vue.js的组件中才能获取你定义的这个对象的状态。</p>
+<h6 id="特性："><a href="#特性：" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>Vuex就是一个放了很多对象的仓库，而state就相当于数据源存放地。</li>
+<li>state里面存放的数据是响应式的，Vue组件从store中读取数据，若是store中的数据发生改变，依赖这个数据的组件也会发生更新</li>
+<li>它通过mapState把全局的 state 和 getters 映射到当前组件的 computed 计算属性中；也可以通过this.$store.state.XXX（属性名）直接应用到组件里面；</li>
+</ol>
+<h5 id="1-2、getter"><a href="#1-2、getter" class="headerlink" title="1.2、getter"></a>1.2、getter</h5><p>​        getter有点类似vue.js的计算属性，当我们需要从store的state中派生出一些状态，那么我们就需要使用getter，getter会接收state作为第一个参数，而且getter的返回值会根据它的依赖被缓存起来，只有getter中的依赖值（state中的某个需要派生状态的值）发生改变的时候才会被重新计算。</p>
+<h6 id="特性：-1"><a href="#特性：-1" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>getters 可以对State进行计算操作，它就是Store的计算属性</li>
+<li>虽然在组件内也可以做计算属性，但是getters 可以在多组件之间复用</li>
+<li>如果一个状态只在一个组件内使用，是可以不用getters</li>
+</ol>
+<h5 id="1-3、mutation"><a href="#1-3、mutation" class="headerlink" title="1.3、mutation"></a>1.3、mutation</h5><p>​        更改store中state状态的唯一方法就是提交mutation，就很类似事件。每个mutation都有一个字符串类型的事件类型和一个回调函数，我们需要改变state的值就要在回调函数中改变。我们要执行这个回调函数，那么我们需要执行一个相应的调用方法：store.commit。</p>
+<h6 id="特性：-2"><a href="#特性：-2" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>对state进行更改，回调函数包含所有判断及操作</li>
+</ol>
+<h5 id="1-4、action"><a href="#1-4、action" class="headerlink" title="1.4、action"></a>1.4、action</h5><p>​        action可以提交mutation，在action中可以执行store.commit，而且action中可以有任何的异步操作。在页面中如果我们要嗲用这个action，则需要执行store.dispatch</p>
+<h6 id="特性：-3"><a href="#特性：-3" class="headerlink" title="特性："></a>特性：</h6><ol>
+<li>Action 类似于 mutation，但是Action 提交的是 mutation，而不是直接变更状态。</li>
+<li>Action 可以包含任意异步操作</li>
+</ol>
+<h5 id="1-5、module"><a href="#1-5、module" class="headerlink" title="1.5、module"></a>1.5、module</h5><p>​        module其实只是解决了当state中很复杂臃肿的时候，module可以将store分割成模块，每个模块中拥有自己的state、mutation、action和getter。</p>
+<p>参考网址：<a href="https://blog.csdn.net/twinkle_J/article/details/81238093" target="_blank" rel="noopener">https://blog.csdn.net/twinkle_J/article/details/81238093</a></p>
+<h1 id="二、使用示例："><a href="#二、使用示例：" class="headerlink" title="二、使用示例："></a>二、使用示例：</h1><ol>
+<li>创建一个/store/index.js，文件配置如下（以用户信息做例子）：</li>
+</ol>
+<p>项目开发中，常将vuex及localStorage一起使用，保证信息的存储，而不会被页面刷新丢失</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">	isLogin: <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> base = root.root;<span class="comment">//root.root</span></span><br><span class="line">axios.defaults.headers.post[<span class="string">'Content-Type'</span>] = <span class="string">'application/json'</span>;</span><br><span class="line">Vue.prototype.$axios = axios;</span><br><span class="line">axios.defaults.withCredentials=<span class="literal">true</span>;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	state: &#123;</span><br><span class="line">		isLogin: <span class="number">0</span>,   <span class="comment">//0表示未登录</span></span><br><span class="line">		token: <span class="string">''</span>,    <span class="comment">//定义一个token变量</span></span><br><span class="line">		role:<span class="number">1</span>,       <span class="comment">//角色</span></span><br><span class="line">		user: <span class="built_in">JSON</span>.stringify(localStorage.user || <span class="string">'&#123;&#125;'</span>), <span class="comment">//user信息存储</span></span><br><span class="line">	&#125;,</span><br><span class="line">	mutations: &#123;</span><br><span class="line">		login (state,data) &#123; </span><br><span class="line">			localStorage.token = data; <span class="comment">//存储登录信息</span></span><br><span class="line">			state.token = data</span><br><span class="line">		&#125;，</span><br><span class="line">        changeUser (state,data)&#123;</span><br><span class="line">			state.user = data;</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;,</span><br><span class="line">	actions: &#123;</span><br><span class="line">		getUser (&#123;commit,paramData&#125;)&#123; <span class="comment">//获取user信息</span></span><br><span class="line">			<span class="keyword">let</span> $router = paramData;</span><br><span class="line">			axios.get(api.info).then(</span><br><span class="line">				res =&gt; &#123;</span><br><span class="line">					<span class="keyword">let</span> data = res.data.data;</span><br><span class="line">					commit(<span class="string">'changeUser'</span>, data.role_id);<span class="comment">//commit mutations里面的changeUser</span></span><br><span class="line">					localStorage.user = <span class="built_in">JSON</span>.stringify(data.role_id || &#123;&#125;);</span><br><span class="line">				&#125;</span><br><span class="line">			).catch(</span><br><span class="line">				err =&gt; &#123;</span><br><span class="line">					commit(<span class="string">'changeUser'</span>,&#123;&#125;);</span><br><span class="line">					<span class="built_in">console</span>.log(router+<span class="string">'------drouter'</span>);</span><br><span class="line">					<span class="keyword">if</span>(router.currentRoute.matched.some(<span class="function"><span class="params">record</span> =&gt;</span> (record.mate.requireAuth)))&#123;</span><br><span class="line">						router.push(&#123;</span><br><span class="line">							path: <span class="string">'/login'</span></span><br><span class="line">						&#125;)</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;</span><br><span class="line">			)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在src/main.js中import该文件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span> <span class="comment">//根据自己的路径实际更改</span></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router,</span><br><span class="line">  store, <span class="comment">//此处一定要挂载</span></span><br><span class="line">  components: &#123; App &#125;,</span><br><span class="line">  template: <span class="string">'&lt;App/&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h1 id="三、使用vuex与不适用vuex的区别："><a href="#三、使用vuex与不适用vuex的区别：" class="headerlink" title="三、使用vuex与不适用vuex的区别："></a>三、使用vuex与不适用vuex的区别：</h1><p>不用Vuex会带来一下问题：</p>
+<ol>
+<li><p>可维护性会下降：你要想修改数据，你得维护三个地方</p>
+</li>
+<li><p>可读性会下降：因为一个组件里的数据，你根本就看不出来是从哪来的</p>
+</li>
+<li><p>增加耦合：大量的上传<a href="https://www.baidu.com/s?wd=%E6%B4%BE%E5%8F%91&amp;tn=24004469_oem_dg&amp;rsv_dl=gh_pl_sl_csd" target="_blank" rel="noopener">派发</a>，会让耦合性大大的增加。</p>
+<p>本来Vue用Component就是为了减少耦合，现在这么用，和组件化的初衷相背。但兄弟组件有大量通信的，建议一定要用，项目大小不论，以为回省下很多操作</p>
+</li>
+</ol>
+<h1 id="四、请求数据代码位置：vuex的actions？组件的methods"><a href="#四、请求数据代码位置：vuex的actions？组件的methods" class="headerlink" title="四、请求数据代码位置：vuex的actions？组件的methods?"></a>四、请求数据代码位置：vuex的actions？组件的methods?</h1><p>一般情况下，我们在开发中，所有的数据请求基本上都写在组件调用的位置。但是当有一些请求数据的接口被复用，且几率很高，这个时候就可以将其置于actions里面，包装秤promise返回，在调用处用async await处理返回的数据。如果不是复用，则直接放在组件的methods里面即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-11vue技术总结3-vuex/" data-id="cjwlen3wt0008twt6c7sf3uwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/19-03-11vue技术总结4-axios及其代理配置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue技术总结4 -- axios及其代理配置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/19-03-11vue技术总结2-页面间传递数据/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vue技术总结2 -- 页面间传递数据</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/formidable、multer、body-parser、nodejs上传文件/">formidable、multer、body-parser、nodejs上传文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/formidable、multer、body-parser、nodejs上传文件/" style="font-size: 10px;">formidable、multer、body-parser、nodejs上传文件</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/07/19-05-19小程序、2048demo记录/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/07/19-05-08未来世界的幸存者/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/07/19-06-07vue+express+mongodb电影实战项目/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/27/19-06-07nodejs下上传文件formidable、multer、body-parser对比/">nodejs下上传文件formidable、multer、body-parser的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/27/19-04-27RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>easy-ui之dataGrid | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
+<meta name="keywords" content="dataGrid、easy-ui">
+<meta property="og:type" content="article">
+<meta property="og:title" content="easy-ui之dataGrid">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/19-03-12easy-ui之dataGrid/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-12T02:33:49.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="easy-ui之dataGrid">
+<meta name="twitter:description" content="datagrid学习：  (1)datagrid 参数字段  ​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-19-03-12easy-ui之dataGrid" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-12easy-ui之dataGrid/" class="article-date">
+  <time datetime="2019-03-11T14:26:45.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      easy-ui之dataGrid
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>datagrid学习：</li>
+</ul>
+<p>(1)datagrid 参数字段 </p>
+<p>​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges</p>
+<p>(2)data-options 属性 可以设置的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">url:</span><br><span class="line"></span><br><span class="line">singSelect:</span><br><span class="line"></span><br><span class="line">toolbar:</span><br><span class="line"></span><br><span class="line">method:</span><br><span class="line"></span><br><span class="line">onClickRow:</span><br><span class="line"></span><br><span class="line">sortable:true/false;</span><br><span class="line"></span><br><span class="line">remoteSort:false/true;</span><br><span class="line"></span><br><span class="line">multiSort:true/false;</span><br><span class="line"></span><br><span class="line">collapsible:true/false;</span><br><span class="line"></span><br><span class="line">rownumbers:true;</span><br><span class="line"></span><br><span class="line">onLoadSuccess:function()&#123;</span><br><span class="line"></span><br><span class="line">    $(this).datagrid(&apos;freezeRow&apos;,0).datagrid(&apos;freezeRow&apos;,1);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">frozen:true/false;  在不需要变化的地方设置frozen=true;</span><br><span class="line"></span><br><span class="line">formatter:  js的function名</span><br><span class="line"></span><br><span class="line">         js的function名：funtion(val,row)&#123;     &#125; ;</span><br><span class="line"></span><br><span class="line">hideColumn -- item.name</span><br><span class="line"></span><br><span class="line">showColumn -- item.name</span><br></pre></td></tr></table></figure>
+<p>(3)</p>
+<p>var cmenu = $(‘<div>’).appendTo(‘body’);</div></p>
+<p>cmenu.menu({ onclick： })</p>
+<p>datagrid的format有三个参数（value,rowDatas,rowIndex)，rowDatas是整列的数据，value应该对应着某一列的值，rowIndex应该是某列的排序，</p>
+<p>​        </p>
+<p>在此列下传参的JavaScript的参数只能是rowIndex，必要情况下可以借由数组来更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#aa&quot;).datagrid(&apos;showColumn&apos;,&apos;XXX&apos;); // item.name</span><br><span class="line">$(&quot;#aa&quot;).datagrid(&apos;hideColumn&apos;,&apos;XXX&apos;); //  显示和隐藏，正常的display等的编辑是不起效果的。</span><br></pre></td></tr></table></figure>
+<p>不过，也要意识到，当自己解决一个问题时，可以将解决办法以及对应效果进行记录和整理，方便观察失败的原因，对比查漏解决的办法，或许只是自己用错方法了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-12easy-ui之dataGrid/" data-id="cjwlen3xa000dtwt6d4top8x4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/19-03-12vue基本知识/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vue基本知识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/19-03-12ztree树结构总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ztree树结构总结</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/formidable、multer、body-parser、nodejs上传文件/">formidable、multer、body-parser、nodejs上传文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/formidable、multer、body-parser、nodejs上传文件/" style="font-size: 10px;">formidable、multer、body-parser、nodejs上传文件</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/06/07/19-05-19小程序、2048demo记录/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/07/19-05-08未来世界的幸存者/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/07/19-06-07vue+express+mongodb电影实战项目/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/27/19-06-07nodejs下上传文件formidable、multer、body-parser对比/">nodejs下上传文件formidable、multer、body-parser的区别</a>
+          </li>
+        
+          <li>
+            <a href="/2019/04/27/19-04-27RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

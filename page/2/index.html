@@ -62,9 +62,189 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-echarts组件使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-12easy-ui之dataGrid" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/11/echarts组件使用总结/" class="article-date">
+    <a href="/2019/03/11/19-03-12easy-ui之dataGrid/" class="article-date">
+  <time datetime="2019-03-11T14:26:45.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/19-03-12easy-ui之dataGrid/">easy-ui之dataGrid</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>datagrid学习：</li>
+</ul>
+<p>(1)datagrid 参数字段 </p>
+<p>​        getSelected、getSelections、getEditor、validateRow（验证组）、getRows（获取数组）、endEditer、loaded（完成加载）、beginEdit、cancelEdit、deleteRow、acceptChanges、rejectChanges、getChanges</p>
+<p>(2)data-options 属性 可以设置的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">url:</span><br><span class="line"></span><br><span class="line">singSelect:</span><br><span class="line"></span><br><span class="line">toolbar:</span><br><span class="line"></span><br><span class="line">method:</span><br><span class="line"></span><br><span class="line">onClickRow:</span><br><span class="line"></span><br><span class="line">sortable:true/false;</span><br><span class="line"></span><br><span class="line">remoteSort:false/true;</span><br><span class="line"></span><br><span class="line">multiSort:true/false;</span><br><span class="line"></span><br><span class="line">collapsible:true/false;</span><br><span class="line"></span><br><span class="line">rownumbers:true;</span><br><span class="line"></span><br><span class="line">onLoadSuccess:function()&#123;</span><br><span class="line"></span><br><span class="line">    $(this).datagrid(&apos;freezeRow&apos;,0).datagrid(&apos;freezeRow&apos;,1);</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">frozen:true/false;  在不需要变化的地方设置frozen=true;</span><br><span class="line"></span><br><span class="line">formatter:  js的function名</span><br><span class="line"></span><br><span class="line">         js的function名：funtion(val,row)&#123;     &#125; ;</span><br><span class="line"></span><br><span class="line">hideColumn -- item.name</span><br><span class="line"></span><br><span class="line">showColumn -- item.name</span><br></pre></td></tr></table></figure>
+<p>(3)</p>
+<p>var cmenu = $(‘<div>’).appendTo(‘body’);</div></p>
+<p>cmenu.menu({ onclick： })</p>
+<p>datagrid的format有三个参数（value,rowDatas,rowIndex)，rowDatas是整列的数据，value应该对应着某一列的值，rowIndex应该是某列的排序，</p>
+<p>​        </p>
+<p>在此列下传参的JavaScript的参数只能是rowIndex，必要情况下可以借由数组来更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&quot;#aa&quot;).datagrid(&apos;showColumn&apos;,&apos;XXX&apos;); // item.name</span><br><span class="line">$(&quot;#aa&quot;).datagrid(&apos;hideColumn&apos;,&apos;XXX&apos;); //  显示和隐藏，正常的display等的编辑是不起效果的。</span><br></pre></td></tr></table></figure>
+<p>不过，也要意识到，当自己解决一个问题时，可以将解决办法以及对应效果进行记录和整理，方便观察失败的原因，对比查漏解决的办法，或许只是自己用错方法了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-12easy-ui之dataGrid/" data-id="cjwlen3xa000dtwt6d4top8x4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-19-03-12ztree树结构总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-12ztree树结构总结/" class="article-date">
+  <time datetime="2019-03-11T14:24:54.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/19-03-12ztree树结构总结/">ztree树结构总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>ztree学习：<a href="http://www.treejs.cn/v3/api.php" target="_blank" rel="noopener">http://www.treejs.cn/v3/api.php</a></li>
+</ul>
+<p><strong>// 1 原型$.fn.zTree</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line">$.fn.zTree = &#123;</span><br><span class="line">    consts // 常量对象；</span><br><span class="line">    _z // zTree v3.x 内部的全部方法都可以通过 $.fn.zTree._z对象进行调用</span><br><span class="line">    getZTreeObj(treeId) // 根据treeId获取zTreeObj</span><br><span class="line">    destroy(treeId) // 根据treeId销毁tree</span><br><span class="line">    init: function(obj, zSetting, zNodes) &#123; // 初始化方法，返回zTreeObj对象；</span><br><span class="line"> ...</span><br><span class="line"> var zTreeTools = &#123; // 参考API的zTreeObj对象说明，是指API的zTreeObj对象；</span><br><span class="line">  setting : setting, // zTree 对象使用的 setting 配置数据，详细请参考 “setting 配置详解”中的各个属性详细说明</span><br><span class="line">  addNodes : function(parentNode, newNodes, isSilent) &#123; // 添加节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  cancelSelectedNode : function(node) &#123; // 取消节点的选中状态。</span><br><span class="line">   view.cancelPreSelectedNode(setting, node);</span><br><span class="line">  &#125;,</span><br><span class="line">  destroy : function() &#123; // 1、用此方法可以销毁 zTreeObj 代表的 zTree。</span><br><span class="line">     // 2、销毁当前页面全部的 zTree，也可以使用 $.fn.zTree.destroy() 方法。</span><br><span class="line">     // 3、重新使用已经被销毁的树，必须要使用 init 方法进行初始化。</span><br><span class="line">   view.destroy(setting);</span><br><span class="line">  &#125;,</span><br><span class="line">  expandAll : function(expandFlag) &#123; // 展开 / 折叠 全部节点</span><br><span class="line">   expandFlag = !!expandFlag;</span><br><span class="line">   view.expandCollapseSonNode(setting, null, expandFlag, true);</span><br><span class="line">   return expandFlag;</span><br><span class="line">  &#125;,</span><br><span class="line">  expandNode : function(node, expandFlag, sonSign, focus, callbackFlag) &#123; // 展开 / 折叠 指定的节点</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodes : function() &#123; // 获取 zTree 的全部节点数据</span><br><span class="line">   return data.getNodes(setting);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeByParam : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件完全匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodeByParam(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeByTId : function(tId) &#123; // 根据 zTree 的唯一标识 tId 快速获取节点 JSON 数据对象</span><br><span class="line">   return data.getNodeCache(setting, tId);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByParam : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件完全匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodesByParam(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByParamFuzzy : function(key, value, parentNode) &#123; // 根据节点数据的属性搜索，获取条件模糊匹配的节点数据 JSON 对象集合</span><br><span class="line">   if (!key) return null;</span><br><span class="line">   return data.getNodesByParamFuzzy(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), key, value);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodesByFilter: function(filter, isSingle, parentNode, invokeParam) &#123; // 根据自定义规则搜索节点数据 JSON 对象集合 或 单个节点数据</span><br><span class="line">   isSingle = !!isSingle;</span><br><span class="line">   if (!filter || (typeof filter != &quot;function&quot;)) return (isSingle ? null : []);</span><br><span class="line">   return data.getNodesByFilter(setting, parentNode?parentNode[setting.data.key.children]:data.getNodes(setting), filter, isSingle, invokeParam);</span><br><span class="line">  &#125;,</span><br><span class="line">  getNodeIndex : function(node) &#123; // 获取某节点在同级节点中的序号（从0开始）</span><br><span class="line">   if (!node) return null;</span><br><span class="line">   var childKey = setting.data.key.children,</span><br><span class="line">   parentNode = (node.parentTId) ? node.getParentNode() : data.getRoot(setting);</span><br><span class="line">   for (var i=0, l = parentNode[childKey].length; i &lt; l; i++) &#123;</span><br><span class="line">    if (parentNode[childKey][i] == node) return i;</span><br><span class="line">   &#125;</span><br><span class="line">   return -1;</span><br><span class="line">  &#125;,</span><br><span class="line">  getSelectedNodes : function() &#123; // 获取 zTree 当前被选中的节点数据集合</span><br><span class="line">   var r = [], list = data.getRoot(setting).curSelectedList;</span><br><span class="line">   for (var i=0, l=list.length; i&lt;l; i++) &#123;</span><br><span class="line">    r.push(list[i]);</span><br><span class="line">   &#125;</span><br><span class="line">   return r;</span><br><span class="line">  &#125;,</span><br><span class="line">  isSelectedNode : function(node) &#123; // 是否选中的节点</span><br><span class="line">   return data.isSelectedNode(setting, node);</span><br><span class="line">  &#125;,</span><br><span class="line">  reAsyncChildNodes : function(parentNode, reloadType, isSilent) &#123; // 强行异步加载父节点的子节点。[setting.async.enable = true 时有效]已经加载过的父节点可反复使用此方法重新加载。请通过 zTree 对象执行此方法。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  refresh : function() &#123; // 刷新 zTree</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  removeChildNodes : function(node) &#123; // 清空某父节点的子节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  removeNode : function(node, callbackFlag) &#123; // 删除节点。</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  selectNode : function(node, addFlag) &#123; // 选中指定节点</span><br><span class="line">   ...</span><br><span class="line">  &#125;,</span><br><span class="line">  transformTozTreeNodes : function(simpleNodes) &#123; // 将简单 Array 格式数据转换为 zTree 使用的标准 JSON 嵌套数据格式。</span><br><span class="line">   return data.transformTozTreeFormat(setting, simpleNodes);</span><br><span class="line">  &#125;,</span><br><span class="line">  transformToArray : function(nodes) &#123; // 将 zTree 使用的标准 JSON 嵌套格式的数据转换为简单 Array 格式。(免去用户自行编写递归遍历全部节点的麻烦)</span><br><span class="line">   return data.transformToArrayFormat(setting, nodes);</span><br><span class="line">  &#125;,</span><br><span class="line">  updateNode : function(node, checkTypeFlag) &#123; // 更新某节点数据，主要用于该节点显示属性的更新。</span><br><span class="line">   ...</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> root.treeTools = zTreeTools;</span><br><span class="line"> data.setZTreeTools(setting, zTreeTools);</span><br><span class="line"></span><br><span class="line"> if (root[childKey] &amp;&amp; root[childKey].length &gt; 0) &#123;</span><br><span class="line">  view.createNodes(setting, 0, root[childKey]);</span><br><span class="line"> &#125; else if (setting.async.enable &amp;&amp; setting.async.url &amp;&amp; setting.async.url !== &apos;&apos;) &#123;</span><br><span class="line">  view.asyncNode(setting);</span><br><span class="line"> &#125;</span><br><span class="line"> return zTreeTools;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>来源： <a href="http://blog.sina.com.cn/s/blog_667ac0360102ebk9.html" target="_blank" rel="noopener">http://blog.sina.com.cn/s/blog_667ac0360102ebk9.html</a></p>
+<ul>
+<li>ztree新知识点补充：（不用重新刷新的更新节点方式，对象）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1、获取zTree对象</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> treeObj = $.fn.zTree.getZTreeObj(<span class="string">"ztreeDemo"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2、找到要修改的树的节点</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> treeNode = treeObj.getNodeByParam(<span class="string">"task_id"</span>,tree_id);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3、为要修改的节点赋值</span></span><br><span class="line"></span><br><span class="line">treeNode.name = tree_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">//4、修改该节点上的值</span></span><br><span class="line"></span><br><span class="line">treeObj.updateNode(treeNode);</span><br><span class="line"></span><br><span class="line">补充，添加节点：addNodes（如果与等级无关，其实也是不用更新的）；</span><br><span class="line"></span><br><span class="line">addNodes(parentNode,index,newNodes,isSlient);</span><br><span class="line"></span><br><span class="line"><span class="comment">//index：-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//isSlient：设定增加节点后是否自动展开父节点；true不展开；其他值或者缺省状态都自动展开。</span></span><br><span class="line"></span><br><span class="line">removeNode移除（对象）</span><br><span class="line"></span><br><span class="line">treeObj.removeNode(nodes[j]);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-12ztree树结构总结/" data-id="cjwlen3y0000jtwt6egacejfb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-19-03-12canvas画图的使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-12canvas画图的使用总结/" class="article-date">
+  <time datetime="2019-03-11T14:15:24.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/19-03-12canvas画图的使用总结/">canvas画图的使用总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br></pre></td><td class="code"><pre><span class="line">var c = $(&quot;#myCanvas&quot;),ctx = c.getContext(&quot;2d&quot;);</span><br><span class="line">ctx.clearRect(0,0,mW,mH);</span><br><span class="line">ctx.beginPath(); //起始一条路径，或重置当前路径</span><br><span class="line">ctx.lineWidth = 10;</span><br><span class="line">ctx.stokeStyle = &quot;#000&quot;; </span><br><span class="line">//var gradient = ctx.createLinearGradient(0,0,90,0); //(X0,Y0,X1,Y1)</span><br><span class="line">//gradient.addColorStop(0, #000);</span><br><span class="line">//gradient.addColorStop(1, #fff);</span><br><span class="line">//ctx.stokeStyle = gradient;</span><br><span class="line">//图片填充 pattern</span><br><span class="line">//var img=document.getElementById(&quot;lamp&quot;);</span><br><span class="line">//var pat=ctx.createPattern(img,&quot;repeat&quot;); //repeat|repeat-x|repeat-y|no-repeat</span><br><span class="line">//ctx.stokeStyle = pat;</span><br><span class="line">//放射状、圆形渐变</span><br><span class="line">//var grd=ctx.createRadialGradient(75,50,5,90,60,100);//(x0,y0,r1,x1,y1,r2);渐变开始的圆的坐标及半径</span><br><span class="line">//grd.addColorStop(0,&quot;red&quot;); //规定 gradient 对象中的颜色和位置。 0-1的位置均可以设置</span><br><span class="line">//grd.addColorStop(1,&quot;white&quot;);</span><br><span class="line">//ctx.fillStyle=grd;</span><br><span class="line"></span><br><span class="line">//canvas 路径</span><br><span class="line">//ctx.fill(); 填充当前绘图（路径） ctx.stoke(); 绘制已定义的路径</span><br><span class="line">//ctx.moveTo(); 把路径移动到画布的指定点，不创建线条。  ctx.lineTo();新添加一个点，然后再画布中创建从该点到最后指定点的线条</span><br><span class="line">//ctx.clip();从原始画布中剪切任意形状和尺寸.一旦剪切了某个区域，则所有之后的绘图都会被限制在被剪切的区域内（不能访问画布上的其他区域）。您也可以在使用 clip() 方法前通过使用 save() 方法对当前画布区域进行保存，并在以后的任意时间对其进行恢复（通过 restore() 方法）。</span><br><span class="line">//ctx.arcTo(150,20,150,70,50); // 创建弧 (X0,Y0,X1,Y1,r);</span><br><span class="line">//ctx.isPointInPath(x,y) 方法返回 true，如果指定的点位于当前路径中；否则返回 false</span><br><span class="line"></span><br><span class="line">//canvas线条样式</span><br><span class="line">//ctx.lineCap=&quot;round&quot;; butt/round/square</span><br><span class="line">//ctx.lineJoin=&quot;round&quot;; //miter/bevel/round</span><br><span class="line">//ctx.lineWidth=10; ctx.miterLimit=5; //折角最大长度</span><br><span class="line"></span><br><span class="line">//canvas矩形</span><br><span class="line">//ctx.rect(0,0,200,200);   ctx.fillRect(0,0,200,200); </span><br><span class="line">//ctx.stokeRect(20,20,150,100); //rect       ctx.clearRect(20,20,100,50); //使其中一部分显示空白</span><br><span class="line"></span><br><span class="line">//canvas文本</span><br><span class="line">//ctx.font=&quot;10px Arial&quot;;</span><br><span class="line">//ctx.textAlign=&quot;start|end|left|right|end&quot;; </span><br><span class="line">//ctx.textBaseline=&quot;alphabetic|top|hanging|middle|ideographic|bottom&quot;;</span><br><span class="line">//measureText() 方法返回包含一个对象，该对象包含以像素计的指定字体宽度。提示：如果您需要在文本向画布输出之前，就了解文本的宽度，那么请使用该方法。var txt=&quot;Hello World&quot; </span><br><span class="line">//ctx.fillText(&quot;width:&quot; + ctx.measureText(txt).width,10,50)</span><br><span class="line">//ctx.strokeText(&quot;Hello World!&quot;,10,50);</span><br><span class="line">//ctx.fillText(&quot;w3school.com.cn&quot;,10,90);</span><br><span class="line"></span><br><span class="line">//canvas drawImage</span><br><span class="line">//ctx.drawImage(img,x,y);</span><br><span class="line">//ctx.drawImage(img,x,y,width,height);</span><br><span class="line">//ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);  剪切,要使用的</span><br><span class="line">//视频使用在画布之上</span><br><span class="line">//var v=document.getElementById(&quot;video1&quot;);</span><br><span class="line">//var c=document.getElementById(&quot;myCanvas&quot;);</span><br><span class="line">//ctx=c.getContext(&apos;2d&apos;);</span><br><span class="line">//v.addEventListener(&apos;play&apos;,function() &#123;var i=window.setInterval(function() </span><br><span class="line">//&#123;ctx.drawImage(v,0,0,270,135)&#125;,20);&#125;,false);</span><br><span class="line">//v.addEventListener(&apos;pause&apos;,function() &#123;window.clearInterval(i);&#125;,false);</span><br><span class="line">//v.addEventListener(&apos;ended&apos;,function() &#123;clearInterval(i);&#125;,false);</span><br><span class="line"></span><br><span class="line">//canvas 合成</span><br><span class="line">//ctx.gloabalAlpha = number;  globalAlpha 属性设置或返回绘图的当前透明值（alpha 或 transparency）。介于 0.0（完全透明） 与 1.0（不透明） 之间的数字。</span><br><span class="line">//globalCompositeOperation 属性设置或返回如何将一个源（新的）图像绘制到目标（已有）的图像上。属性值多个</span><br><span class="line">//source-over | source-atop | source-in | source-out | destination-over | destination-atop | destination-in | destination-out | lighter | copy | xor</span><br><span class="line"></span><br><span class="line">//canvas像素</span><br><span class="line">//var imgData=ctx.createImageData(width,height);</span><br><span class="line">//imgData.data[4]=0; imgData.data[5]=255; imgData.data[6]=0; imgData.data[7]=255;  //R\G\B\A</span><br><span class="line">//var imgData=ctx.createImageData(imageData); //与另一个尺寸相同</span><br><span class="line">//var imgData=ctx.getImageData(10,10,50,50); //拷贝</span><br><span class="line">//ctx.putImageData(imgData,10,70); //放置</span><br><span class="line"></span><br><span class="line">// canvas </span><br><span class="line">//ctx.rotate(angle); //旋转角度  ctx.scale(w,h);  放大大小1 = 100%;</span><br><span class="line">//ctx.translate(x,y) 方法重新映射画布上的 (0,0) 位置。后调用诸如 fillRect() 之类的方法时，值会添加到 x 和 y 坐标值上。</span><br><span class="line">//ctx.setTransform();  ctx.transform();</span><br><span class="line"></span><br><span class="line">ctx.arc( r, r, nR, startAngle, endAngle, false);//context.arc(x,y,r,sAngle,eAngle,counterclockwise);</span><br><span class="line">//正上方1.5*PI</span><br><span class="line">ctx.stoke();</span><br><span class="line">ctx.closePath();</span><br><span class="line">ctx.restore();</span><br><span class="line">ctx.save();</span><br><span class="line">var fontSize = 16;</span><br><span class="line">ctx.fillStyle = &quot;#fff&quot;;</span><br><span class="line">ctx.font = fontSize + &quot;px 微软雅黑&quot;;</span><br><span class="line">ctx.textAlign = &quot;center&quot;;</span><br><span class="line">ctx.fillText(&quot;通过率&quot;, r, r-fontSize + 15);</span><br><span class="line">//换行的话，多写一行即可。</span><br><span class="line">ctx.fillText( Math.round((tmpAngle - startAngle)/(endAngle - startAngle) * 100) + &apos;%&apos;, r, r+fontSize);</span><br><span class="line"></span><br><span class="line">var rander = function() &#123;</span><br><span class="line">    requestAnimateFrame(rander);//1、经过浏览器优化，动画更流畅；2、窗口没激活时，动画将停止，省计算资源；3、更省电，尤其对移动终端</span><br><span class="line">&#125;</span><br><span class="line">//有时候我们需要加一些控制，requestAnimationFrame也可以想setInterval一样返回一个句柄，然后可以由此取消它</span><br><span class="line">var globalID;</span><br><span class="line">function animate () &#123;</span><br><span class="line">    globalID = requestAnimationFrame(animate);</span><br><span class="line">&#125;</span><br><span class="line">gloabalID = requestAnimationnFrame(animate); //start</span><br><span class="line">cancelAnimationFrame(globalID); //Stop</span><br><span class="line">//兼容多种环境</span><br><span class="line">(function() &#123;  </span><br><span class="line">    var lastTime = 0;  </span><br><span class="line">    var vendors = [&apos;ms&apos;, &apos;moz&apos;, &apos;webkit&apos;, &apos;o&apos;];  </span><br><span class="line">    for(var x = 0; x &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++x) &#123;  </span><br><span class="line">        window.requestAnimationFrame = window[vendors[x]+&apos;RequestAnimationFrame&apos;];  </span><br><span class="line">        window.cancelAnimationFrame = window[vendors[x]+&apos;CancelAnimationFrame&apos;]   </span><br><span class="line">                                   || window[vendors[x]+&apos;CancelRequestAnimationFrame&apos;];  </span><br><span class="line">    &#125;  </span><br><span class="line">   </span><br><span class="line">    if (!window.requestAnimationFrame)  </span><br><span class="line">        window.requestAnimationFrame = function(callback, element) &#123;  </span><br><span class="line">            var currTime = new Date().getTime();  </span><br><span class="line">            var timeToCall = Math.max(0, 16 - (currTime - lastTime));  </span><br><span class="line">            var id = window.setTimeout(function() &#123; callback(currTime + timeToCall); &#125;,   </span><br><span class="line">              timeToCall);  </span><br><span class="line">            lastTime = currTime + timeToCall;  </span><br><span class="line">            return id;  </span><br><span class="line">        &#125;;  </span><br><span class="line">   </span><br><span class="line">    if (!window.cancelAnimationFrame)  </span><br><span class="line">        window.cancelAnimationFrame = function(id) &#123;  </span><br><span class="line">            clearTimeout(id);  </span><br><span class="line">        &#125;;  </span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">//兼容环境升级版</span><br><span class="line">// requestAnimationFrame polyfill by Erik Möller.</span><br><span class="line">// Fixes from Paul Irish, Tino Zijdel, Andrew Mao, Klemen Slavič, Darius Bacon</span><br><span class="line"> </span><br><span class="line">// MIT license</span><br><span class="line"> </span><br><span class="line">if (!Date.now)</span><br><span class="line">    Date.now = function() &#123; return new Date().getTime(); &#125;;</span><br><span class="line"> </span><br><span class="line">(function() &#123;</span><br><span class="line">    &apos;use strict&apos;;</span><br><span class="line">    </span><br><span class="line">    var vendors = [&apos;webkit&apos;, &apos;moz&apos;];</span><br><span class="line">    for (var i = 0; i &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++i) &#123;</span><br><span class="line">        var vp = vendors[i];</span><br><span class="line">        window.requestAnimationFrame = window[vp+&apos;RequestAnimationFrame&apos;];</span><br><span class="line">        window.cancelAnimationFrame = (window[vp+&apos;CancelAnimationFrame&apos;]</span><br><span class="line">                                   || window[vp+&apos;CancelRequestAnimationFrame&apos;]);</span><br><span class="line">    &#125;</span><br><span class="line">    if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy</span><br><span class="line">        || !window.requestAnimationFrame || !window.cancelAnimationFrame) &#123;</span><br><span class="line">        var lastTime = 0;</span><br><span class="line">        window.requestAnimationFrame = function(callback) &#123;</span><br><span class="line">            var now = Date.now();</span><br><span class="line">            var nextTime = Math.max(lastTime + 16, now);</span><br><span class="line">            return setTimeout(function() &#123; callback(lastTime = nextTime); &#125;,</span><br><span class="line">                              nextTime - now);</span><br><span class="line">        &#125;;</span><br><span class="line">        window.cancelAnimationFrame = clearTimeout;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;());</span><br><span class="line"></span><br><span class="line">//星空图动画：</span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body &#123;</span><br><span class="line">            overflow:hidden;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;canvas id=&quot;motion&quot;&gt;Canvas is not supported in your browser.&lt;/canvas&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    // requestAnimationFrame polyfill by Erik Möller.</span><br><span class="line">    if (!Date.now)</span><br><span class="line">        Date.now = function() &#123; return new Date().getTime(); &#125;;</span><br><span class="line"></span><br><span class="line">    (function() &#123;</span><br><span class="line">        &apos;use strict&apos;;       </span><br><span class="line">        var vendors = [&apos;webkit&apos;, &apos;moz&apos;];</span><br><span class="line">        for (var i = 0; i &lt; vendors.length &amp;&amp; !window.requestAnimationFrame; ++i) &#123;</span><br><span class="line">            var vp = vendors[i];</span><br><span class="line">            window.requestAnimationFrame = window[vp+&apos;RequestAnimationFrame&apos;];</span><br><span class="line">            window.cancelAnimationFrame = (window[vp+&apos;CancelAnimationFrame&apos;]</span><br><span class="line">                                    || window[vp+&apos;CancelRequestAnimationFrame&apos;]);</span><br><span class="line">        &#125;</span><br><span class="line">        if (/iP(ad|hone|od).*OS 6/.test(window.navigator.userAgent) // iOS6 is buggy</span><br><span class="line">            || !window.requestAnimationFrame || !window.cancelAnimationFrame) &#123;</span><br><span class="line">            var lastTime = 0;</span><br><span class="line">            window.requestAnimationFrame = function(callback) &#123;</span><br><span class="line">                var now = Date.now();</span><br><span class="line">                var nextTime = Math.max(lastTime + 16, now);</span><br><span class="line">                return setTimeout(function() &#123; callback(lastTime = nextTime); &#125;,</span><br><span class="line">                                nextTime - now);</span><br><span class="line">            &#125;;</span><br><span class="line">            window.cancelAnimationFrame = clearTimeout;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;());</span><br><span class="line"></span><br><span class="line">    var getRandomColor = function()&#123;</span><br><span class="line">        return &apos;#&apos;+(Math.random()*0xffffff&lt;&lt;0).toString(16);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var canvas = document.getElementById(&quot;motion&quot;), </span><br><span class="line">        c = canvas.getContext(&quot;2d&quot;),</span><br><span class="line">        particles = &#123;&#125;,</span><br><span class="line">        particleIndex = 0,</span><br><span class="line">        particleNum = 0.2;</span><br><span class="line"></span><br><span class="line">    canvas.width = window.innerWidth;</span><br><span class="line">    canvas.height = window.innerHeight;</span><br><span class="line"></span><br><span class="line">    function Particle()&#123;</span><br><span class="line">        this.x = canvas.width/2;</span><br><span class="line">        this.y = canvas.height/2;</span><br><span class="line"></span><br><span class="line">        this.vx = Math.random() * 6 - 3;</span><br><span class="line">        this.vy = Math.random() * 4 - 2;</span><br><span class="line"></span><br><span class="line">        this.growth = ( Math.abs(this.vx) + Math.abs(this.vy) ) * 0.007;</span><br><span class="line"></span><br><span class="line">        particleIndex++;</span><br><span class="line">        particles[particleIndex] = this;</span><br><span class="line">        this.id = particleIndex;</span><br><span class="line">        this.size = Math.random() * 1;</span><br><span class="line">        this.color = getRandomColor();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Particle.prototype.draw = function()&#123;</span><br><span class="line">        this.x += this.vx;</span><br><span class="line">        this.y += this.vy;</span><br><span class="line"></span><br><span class="line">        this.size += this.growth;</span><br><span class="line">        if(this.x &gt; canvas.width || this.y &gt; canvas.height)&#123;</span><br><span class="line">            delete particles[this.id];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        c.fillStyle = this.color;</span><br><span class="line">        c.beginPath();</span><br><span class="line">        c.arc(this.x, this.y, this.size,0*Math.PI,2*Math.PI);</span><br><span class="line">        c.fill();</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    function animate()&#123;</span><br><span class="line">        requestAnimationFrame( animate );        </span><br><span class="line">        c.fillStyle = &quot;#000&quot;;</span><br><span class="line">        c.fillRect(0,0,canvas.width,canvas.height);</span><br><span class="line">        if(Math.random() &gt; particleNum)&#123;</span><br><span class="line">            new Particle();</span><br><span class="line">        &#125;</span><br><span class="line">        for(var i in particles)&#123;</span><br><span class="line">            particles[i].draw();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    requestAnimationFrame( animate );</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-12canvas画图的使用总结/" data-id="cjwlen3x3000btwt6thm1he3h" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-19-03-11thinkphp3-2-react开发上传文件展示信息学习记录" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-11thinkphp3-2-react开发上传文件展示信息学习记录/" class="article-date">
+  <time datetime="2019-03-11T14:03:51.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/19-03-11thinkphp3-2-react开发上传文件展示信息学习记录/">thinkphp3.2 + react开发上传文件展示信息学习记录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一、ant插件的使用："><a href="#一、ant插件的使用：" class="headerlink" title="一、ant插件的使用："></a>一、ant插件的使用：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">// 项目需要引入ant </span><br><span class="line">安装：npm install antd --save</span><br><span class="line">使用：import &#123; 组件名称 &#125; from &apos;antd&apos;（比如import &#123; Switch &#125; from &apos;antd&apos;）</span><br><span class="line">还要引用其样式：import &apos;antd/dist/antd.css&apos;</span><br><span class="line">但是这样直接引用样式会有一些不必要的组件也被引入进来 需要配置webpack进行按需加载</span><br><span class="line">安装babel-plugin-import</span><br><span class="line">npm install babel-plugin-import --save-dev</span><br><span class="line">配置webpack：</span><br><span class="line">&#123; </span><br><span class="line">    test: /\.(js|jsx)$/, </span><br><span class="line">    exclude: /node_modules/, </span><br><span class="line">    loader: &quot;babel-loader&quot;, </span><br><span class="line">    query: &#123;</span><br><span class="line">        presets:[&apos;es2015&apos;,&apos;react&apos;],</span><br><span class="line">        plugins: [</span><br><span class="line">            [&quot;import&quot;, &#123;libraryName: &quot;antd&quot;, style: &quot;css&quot;&#125;] //按需加载</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">放在module rules下面</span><br><span class="line">上述配置完毕直接使用组件： &lt;Switch defaultChecked=&#123;false&#125; /&gt;</span><br><span class="line"></span><br><span class="line">// 个人实际引用经验  因为react与vue的特性区别，react不需要指令也不需要“:”锁定，没一个引入的特性均包括在中括号之下，antd常在插件上使用一些属性，需要&#123;&#125;包裹</span><br></pre></td></tr></table></figure>
+<h1 id="二、thinkphp3-2核心功能代码部分："><a href="#二、thinkphp3-2核心功能代码部分：" class="headerlink" title="二、thinkphp3.2核心功能代码部分："></a>二、thinkphp3.2核心功能代码部分：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">// 上传文件的相关配置，thinkphp使用不是很熟练，切忌单纯的去百度，百度上常放着的问题是大家都会遇到的，简单的是找不到的</span><br><span class="line">        $upload=new \Think\Upload();//实例化上传类</span><br><span class="line">        $upload-&gt;saveName = $count; //设置上传文件名称</span><br><span class="line">        $upload-&gt;autoSub = false; // 上传时不添加时间目录</span><br><span class="line">        $upload-&gt;maxSize = 3145728 ;// info设置附info件上传大小 2M = 1024*1024*2=2097152 3M = 1024*1024*3=3145728</span><br><span class="line">        $upload-&gt;exts = array(&apos;jpg&apos;,&apos;jpeg&apos;,&apos;png&apos;,&apos;gif&apos;);</span><br><span class="line">        $upload-&gt;rootPath =&apos;./public/info/&apos;.$Model.&quot;/&quot;; // 设置附件上传根目录</span><br><span class="line">        $info = $upload-&gt;uploadOne($_FILES[&apos;img&apos;]);</span><br><span class="line">        $return[&apos;img&apos;] = $_FILES[&apos;img&apos;];</span><br><span class="line">        if(!$info)&#123;</span><br><span class="line">            $this-&gt;error($upload-&gt;getError());</span><br><span class="line">        &#125;else&#123;//成功</span><br><span class="line">            $res = M($Model) -&gt; add($data);</span><br><span class="line">            $return[&apos;data&apos;] = $res;</span><br><span class="line">            $this -&gt; ajaxReturn($return); // 以json格式返回给前端数据</span><br><span class="line">        &#125;</span><br><span class="line">// limit，count</span><br><span class="line">    $res = M($Model) -&gt; where($map) -&gt; limit($startNum, $endNum) -&gt; field (&apos;id&apos;,&apos;name&apos;)-&gt; select();</span><br><span class="line">    $res = M($Model) -&gt; count();  // $res一直是个数组 json格式的获取 $res[&apos;name&apos;]</span><br><span class="line">// thinkphp字符串的拼接是靠 &quot;.&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="三、React部分"><a href="#三、React部分" class="headerlink" title="三、React部分"></a>三、React部分</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">// 问题1： axios的引入</span><br><span class="line">// 封装http</span><br><span class="line">import axios from &apos;axios&apos;</span><br><span class="line">import qs from &apos;querystring&apos;</span><br><span class="line"></span><br><span class="line">let http = &#123;post: &quot;&quot;, get: &quot;&quot;&#125;</span><br><span class="line"></span><br><span class="line">http.post = function (api, data) &#123;</span><br><span class="line">    let params = qs.stringify(data)</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        axios.post(&apos;http://localhost/Fun/index.php/Home&apos; + api, params).then((res) =&gt; &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http.get = function (api, data) &#123;</span><br><span class="line">    let params = qs.stringify(data)</span><br><span class="line">    return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        axios.get(&apos;http://localhost/Fun/index.php/Home&apos; + api, params).then((res) =&gt; &#123;</span><br><span class="line">            resolve(res)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">export default http</span><br><span class="line">// axios普通的get\post上传时没有问题的，但是上传文件靠form_data的时候，推荐使用ajax</span><br><span class="line">// 问题2： reducer的使用和总结</span><br><span class="line">// 封装reducer :包括action、reducer  =&gt; 生成store，在每个需要使用store的位置引用即可  react需要注意公用的特性，入口文件加载一次并不会如vue一样，每个页面都包括该内容</span><br><span class="line">// 1、先创建TODOList.js  export 多个值，再解构赋值即可</span><br><span class="line">export const Path = handleActions(&#123;</span><br><span class="line">    &apos;CHANGE_PATH&apos;(state,action) &#123;</span><br><span class="line">        sessionStorage.setItem(&apos;Path&apos;, action.Path); // 使用sessionStorage来保证值存储在各个页面之间</span><br><span class="line">        return action.Path</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,sessionStorage.getItem(&apos;Path&apos;)?sessionStorage.getItem(&apos;Path&apos;):&apos;/login&apos;)</span><br><span class="line">// 2、create Store</span><br><span class="line">import &#123; combineReducers &#125; from &apos;redux&apos;</span><br><span class="line">import * as todoList from &apos;./todoList&apos;</span><br><span class="line">import &#123;createStore&#125; from  &apos;redux&apos;</span><br><span class="line">const rootReducer = combineReducers(&#123;</span><br><span class="line">  ...todoList,</span><br><span class="line">&#125;)</span><br><span class="line">const store = createStore(rootReducer)</span><br><span class="line">export default store</span><br><span class="line">// </span><br><span class="line">// 问题3： 页面跳转及传值</span><br><span class="line">    // 关于这方面的内容，我还没有更清晰的了解。我发现的规律如下：</span><br><span class="line">    // 1、在没有props的情况下，可以使用this.props.history.push(&apos;path&apos;);</span><br><span class="line">    //  不过通常使用window.location.href = &quot;&quot;</span><br><span class="line">// 路由</span><br><span class="line">import React from &apos;react&apos;</span><br><span class="line">import &#123; Router &#125; from &apos;react-router-dom&apos;</span><br><span class="line">import &#123; Route &#125; from &apos;react-router&apos;</span><br><span class="line">import Login from &apos;./../home/pages/Login&apos;</span><br><span class="line">import Container from &apos;./../home/container&apos;</span><br><span class="line">import createBrowserHistory from &apos;history/createBrowserHistory&apos;</span><br><span class="line"></span><br><span class="line">const customHistory = createBrowserHistory()</span><br><span class="line"></span><br><span class="line">const routes = (</span><br><span class="line">  &lt;Router history=&#123;customHistory&#125; &gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;Route path=&quot;/&quot; exact component=&#123;Login&#125; /&gt;</span><br><span class="line">      &lt;Route path=&quot;/index&quot; component=&#123;Container&#125;/&gt;</span><br><span class="line">      &lt;Route path=&quot;/login&quot; component=&#123;Login&#125; /&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/Router&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">export default routes;</span><br><span class="line"></span><br><span class="line">// 对应的index.js</span><br><span class="line">import React from &apos;react&apos;;</span><br><span class="line">import ReactDOM from &apos;react-dom&apos;;</span><br><span class="line">import &#123; Provider &#125; from &apos;react-redux&apos;;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &#123; routes &#125;</span><br><span class="line">  &lt;/Provider&gt;,</span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">);</span><br><span class="line">// 路由使用特点：</span><br><span class="line">// 1、路径中共有的内容，可作为共享部分</span><br><span class="line">// 2、 exact 绝对地址  form ... to</span><br><span class="line">// 其他：</span><br><span class="line">// 1、 vue中的数组无length长度等属性，react不确定</span><br><span class="line">// 2、 this.state在使用的过程中，一般在函数见传递打印的均为上一次保留的数据，只有在页面中得到彰显之后才有效</span><br><span class="line">// 3、 加载DOM之前的函数 componentDidMount () &#123;&#125; 通常数据获取从此处进行</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/11/19-03-11thinkphp3-2-react开发上传文件展示信息学习记录/" data-id="cjwlen3w40003twt63s68s2it" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-19-03-12echarts组件使用总结" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/19-03-12echarts组件使用总结/" class="article-date">
   <time datetime="2019-03-11T13:58:11.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     
@@ -76,7 +256,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/echarts组件使用总结/">echarts组件使用总结</a>
+      <a class="article-title" href="/2019/03/11/19-03-12echarts组件使用总结/">echarts组件使用总结</a>
     </h1>
   
 
@@ -102,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/echarts组件使用总结/" data-id="cjuzd8ndv00056ot6sghzjuhy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/19-03-12echarts组件使用总结/" data-id="cjwlen3xh000ftwt69l50tw94" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li></ul>
@@ -114,9 +294,9 @@
 
 
   
-    <article id="post-vue技术总结4-axios及其代理配置" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-11vue技术总结4-axios及其代理配置" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/11/vue技术总结4-axios及其代理配置/" class="article-date">
+    <a href="/2019/03/11/19-03-11vue技术总结4-axios及其代理配置/" class="article-date">
   <time datetime="2019-03-11T11:02:03.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     
@@ -128,7 +308,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
+      <a class="article-title" href="/2019/03/11/19-03-11vue技术总结4-axios及其代理配置/">vue技术总结4 -- axios及其代理配置</a>
     </h1>
   
 
@@ -173,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结4-axios及其代理配置/" data-id="cjuzd8neo000l6ot61h8n6eh9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/19-03-11vue技术总结4-axios及其代理配置/" data-id="cjwlen3ww0009twt6ow72fzjf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li></ul>
@@ -185,9 +365,9 @@
 
 
   
-    <article id="post-vue技术总结3-vuex" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-11vue技术总结3-vuex" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/11/vue技术总结3-vuex/" class="article-date">
+    <a href="/2019/03/11/19-03-11vue技术总结3-vuex/" class="article-date">
   <time datetime="2019-03-11T10:32:37.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     
@@ -199,7 +379,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
+      <a class="article-title" href="/2019/03/11/19-03-11vue技术总结3-vuex/">vue技术总结3 -- vuex</a>
     </h1>
   
 
@@ -257,7 +437,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结3-vuex/" data-id="cjuzd8nel000j6ot6lthqwm2y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/19-03-11vue技术总结3-vuex/" data-id="cjwlen3wt0008twt6c7sf3uwd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li></ul>
@@ -269,9 +449,9 @@
 
 
   
-    <article id="post-vue技术总结2-页面间传递数据" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-11vue技术总结2-页面间传递数据" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/11/vue技术总结2-页面间传递数据/" class="article-date">
+    <a href="/2019/03/11/19-03-11vue技术总结2-页面间传递数据/" class="article-date">
   <time datetime="2019-03-11T10:18:53.000Z" itemprop="datePublished">2019-03-11</time>
 </a>
     
@@ -283,7 +463,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
+      <a class="article-title" href="/2019/03/11/19-03-11vue技术总结2-页面间传递数据/">vue技术总结2 -- 页面间传递数据</a>
     </h1>
   
 
@@ -309,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/11/vue技术总结2-页面间传递数据/" data-id="cjuzd8nej000h6ot6qbhi5ysq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/11/19-03-11vue技术总结2-页面间传递数据/" data-id="cjwlen3wk0005twt6csch4jp1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li></ul>
@@ -321,9 +501,9 @@
 
 
   
-    <article id="post-vue技术总结1-vue-Router在项目中的使用" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-11vue技术总结1-vue-Router在项目中的使用" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" class="article-date">
+    <a href="/2019/03/10/19-03-11vue技术总结1-vue-Router在项目中的使用/" class="article-date">
   <time datetime="2019-03-10T13:44:25.000Z" itemprop="datePublished">2019-03-10</time>
 </a>
     
@@ -335,7 +515,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
+      <a class="article-title" href="/2019/03/10/19-03-11vue技术总结1-vue-Router在项目中的使用/">vue技术总结1 -- vueRouter在项目中的使用</a>
     </h1>
   
 
@@ -357,7 +537,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/vue技术总结1-vue-Router在项目中的使用/" data-id="cjuzd8ned000f6ot6cqr70mq3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/19-03-11vue技术总结1-vue-Router在项目中的使用/" data-id="cjwlen3wd0004twt6yc4qg4y0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li></ul>
@@ -369,9 +549,9 @@
 
 
   
-    <article id="post-将hexo博客转移到另一电脑" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <article id="post-19-03-10将hexo博客转移到另一电脑" class="article article-type-post" itemscope="" itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/10/将hexo博客转移到另一电脑/" class="article-date">
+    <a href="/2019/03/10/19-03-10将hexo博客转移到另一电脑/" class="article-date">
   <time datetime="2019-03-10T07:22:54.000Z" itemprop="datePublished">2019-03-10</time>
 </a>
     
@@ -383,7 +563,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/10/将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
+      <a class="article-title" href="/2019/03/10/19-03-10将hexo博客转移到另一电脑/">将hexo博客转移到另一电脑</a>
     </h1>
   
 
@@ -408,68 +588,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/10/将hexo博客转移到另一电脑/" data-id="cjuzd8nex000q6ot6fxoliz0l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/10/19-03-10将hexo博客转移到另一电脑/" data-id="cjwlen3vl0001twt6xkn5an3v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-windows上hexo搭建GitHub-Page博客" class="article article-type-post" itemscope="" itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/01/25/windows上hexo搭建GitHub-Page博客/" class="article-date">
-  <time datetime="2019-01-25T01:44:59.000Z" itemprop="datePublished">2019-01-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/01/25/windows上hexo搭建GitHub-Page博客/">windows上hexo搭建GitHub Page博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-分别下载并安装git、node-js、hexo"><a href="#1-分别下载并安装git、node-js、hexo" class="headerlink" title="1. 分别下载并安装git、node.js、hexo"></a>1. 分别下载并安装git、node.js、hexo</h4><h5 id="git推荐下载地址，下载之后按步骤安装即可；"><a href="#git推荐下载地址，下载之后按步骤安装即可；" class="headerlink" title="git推荐下载地址，下载之后按步骤安装即可；"></a><a href="https://git-for-windows.github.io/" target="_blank" rel="noopener">git推荐下载地址</a>，下载之后按步骤安装即可；</h5><h5 id="node-js推荐下载地址，建议下载稳定版而不是最新版；"><a href="#node-js推荐下载地址，建议下载稳定版而不是最新版；" class="headerlink" title="node.js推荐下载地址，建议下载稳定版而不是最新版；"></a><a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js推荐下载地址</a>，建议下载稳定版而不是最新版；</h5><h5 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h5><h6 id="任意位置，鼠标右键，选择Git-bash-here，输入以下命令"><a href="#任意位置，鼠标右键，选择Git-bash-here，输入以下命令" class="headerlink" title="任意位置，鼠标右键，选择Git bash here，输入以下命令"></a>任意位置，鼠标右键，选择Git bash here，输入以下命令</h6><p><code>npm install hexo -g</code><br>检查方法 <code>npm root -g</code></p>
-<h4 id="2-安装好，开始创建本地hexo网页"><a href="#2-安装好，开始创建本地hexo网页" class="headerlink" title="2. 安装好，开始创建本地hexo网页"></a>2. 安装好，开始创建本地hexo网页</h4><h5 id="在合适的位置创建你的博客文件夹，自己起名即可。然后进入该文件夹，分别执行"><a href="#在合适的位置创建你的博客文件夹，自己起名即可。然后进入该文件夹，分别执行" class="headerlink" title="在合适的位置创建你的博客文件夹，自己起名即可。然后进入该文件夹，分别执行"></a>在合适的位置创建你的博客文件夹，自己起名即可。然后进入该文件夹，分别执行</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo init //初始化文件</span><br><span class="line">npm install //安装依赖包</span><br><span class="line">hexo g //生成静态文件 g =&gt; generate缩写</span><br><span class="line">hexo s //在本地预览 s =&gt; server缩写</span><br></pre></td></tr></table></figure>
-<h5 id="hexo-s执行完之后，会显示项目运行在哪个端口即可直接在浏览器访问，访问即可看到"><a href="#hexo-s执行完之后，会显示项目运行在哪个端口即可直接在浏览器访问，访问即可看到" class="headerlink" title="hexo s执行完之后，会显示项目运行在哪个端口即可直接在浏览器访问，访问即可看到"></a>hexo s执行完之后，会显示项目运行在哪个端口即可直接在浏览器访问，访问即可看到</h5><p><img src="http://39.106.9.2/blogImg/2019-01-25hexo_homePage.jpg" alt="hexo home页" title="hexo homePage"></p>
-<h4 id="3-部署博客"><a href="#3-部署博客" class="headerlink" title="3. 部署博客"></a>3. 部署博客</h4><ul>
-<li><h5 id="先到github注册一个账号，建立一个repository"><a href="#先到github注册一个账号，建立一个repository" class="headerlink" title="先到github注册一个账号，建立一个repository"></a>先到github注册一个账号，建立一个repository</h5><h5 id="你的博客名称是与你的用户名一致的，最好是提前想好自己的用户名。如果已经注册过了，相信你的用户名应该也有自己的意义。"><a href="#你的博客名称是与你的用户名一致的，最好是提前想好自己的用户名。如果已经注册过了，相信你的用户名应该也有自己的意义。" class="headerlink" title="你的博客名称是与你的用户名一致的，最好是提前想好自己的用户名。如果已经注册过了，相信你的用户名应该也有自己的意义。"></a>你的博客名称是与你的用户名一致的，最好是提前想好自己的用户名。如果已经注册过了，相信你的用户名应该也有自己的意义。</h5><h5 id="用来与博客相关的repository的名称必须要填写：“你的用户名”-“-github-io”。比如我的用户名是zhangsan，那么我的博客的repository的名称就是：zhangsan-github-io"><a href="#用来与博客相关的repository的名称必须要填写：“你的用户名”-“-github-io”。比如我的用户名是zhangsan，那么我的博客的repository的名称就是：zhangsan-github-io" class="headerlink" title="用来与博客相关的repository的名称必须要填写：“你的用户名”+“.github.io”。比如我的用户名是zhangsan，那么我的博客的repository的名称就是：zhangsan.github.io"></a>用来与博客相关的repository的名称必须要填写：“你的用户名”+“.github.io”。比如我的用户名是zhangsan，那么我的博客的repository的名称就是：zhangsan.github.io</h5></li>
-<li><h5 id="生成SSH密钥"><a href="#生成SSH密钥" class="headerlink" title="生成SSH密钥"></a>生成SSH密钥</h5><h5 id="git-bash-here输入ssh-keygen-t-rsa-C-quot-你的邮箱地址-quot-，然后根据提示按三遍回车即可成功，在你的用户文件-ssh下会看到两个文件id-rsa密钥、id-rsa-pub公钥"><a href="#git-bash-here输入ssh-keygen-t-rsa-C-quot-你的邮箱地址-quot-，然后根据提示按三遍回车即可成功，在你的用户文件-ssh下会看到两个文件id-rsa密钥、id-rsa-pub公钥" class="headerlink" title="git bash here输入ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;，然后根据提示按三遍回车即可成功，在你的用户文件.ssh下会看到两个文件id_rsa密钥、id_rsa.pub公钥"></a>git bash here输入<code>ssh-keygen -t rsa -C &quot;你的邮箱地址&quot;</code>，然后根据提示按三遍回车即可成功，在你的用户文件.ssh下会看到两个文件id_rsa密钥、id_rsa.pub公钥</h5></li>
-<li><h5 id="在GitHub中选择setting-gt-SSH-and-GPG-keys-gt-右上角的New-SSH-key，title随意配置，密钥黏贴公钥"><a href="#在GitHub中选择setting-gt-SSH-and-GPG-keys-gt-右上角的New-SSH-key，title随意配置，密钥黏贴公钥" class="headerlink" title="在GitHub中选择setting -&gt; SSH and GPG keys -&gt; 右上角的New SSH key，title随意配置，密钥黏贴公钥"></a>在GitHub中选择setting -&gt; SSH and GPG keys -&gt; 右上角的New SSH key，title随意配置，密钥黏贴公钥</h5><p><img src="http://39.106.9.2/blogImg/2019-01-25github_isa.png" alt="github密钥" title="github密钥"></p>
-</li>
-<li><h5 id="全局配置git账号信息"><a href="#全局配置git账号信息" class="headerlink" title="全局配置git账号信息"></a>全局配置git账号信息</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的github用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的github注册邮箱&quot;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><h5 id="配置本地文件"><a href="#配置本地文件" class="headerlink" title="配置本地文件"></a>配置本地文件</h5><h5 id="打开你创建的博客根目录文件下的-config-yml"><a href="#打开你创建的博客根目录文件下的-config-yml" class="headerlink" title="打开你创建的博客根目录文件下的_config.yml"></a>打开你创建的博客根目录文件下的_config.yml</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">	type: git</span><br><span class="line">	repo: https://github.com/user.name/user.name.github.io //user.name就是全局配置的github用户名，我的也就是https://github.com/zhangsan/zhangsan.github.io</span><br><span class="line">	branch: master //这里的三行后面的空格都是必须的</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="hexo部署"><a href="#hexo部署" class="headerlink" title="hexo部署"></a>hexo部署</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo g //生成静态文件</span><br><span class="line">hexo d //deploy部署的意思，出现INFO Deploy done:git字样，表示成功，如果没有成功error字样，输入下一行</span><br><span class="line">npm install hexo-deployer-git --save //然后再g、d就可以了。如果还是失败，建议重新安装一次hexo</span><br></pre></td></tr></table></figure>
-</li>
-<li><h5 id="在浏览器输入你的新建仓库名即可看到与本地看到一致的hexo页面了"><a href="#在浏览器输入你的新建仓库名即可看到与本地看到一致的hexo页面了" class="headerlink" title="在浏览器输入你的新建仓库名即可看到与本地看到一致的hexo页面了"></a>在浏览器输入你的新建仓库名即可看到与本地看到一致的hexo页面了</h5><p><a href="https://user.name.github.io" target="_blank" rel="noopener">https://user.name.github.io</a> 即 <a href="https://zhangsan.github.io" target="_blank" rel="noopener">https://zhangsan.github.io</a></p>
-</li>
-</ul>
-<h4 id="4-搭建好博客后编写并挂载："><a href="#4-搭建好博客后编写并挂载：" class="headerlink" title="4. 搭建好博客后编写并挂载："></a>4. 搭建好博客后编写并挂载：</h4><h5 id="博客文件一般均在source-posts下，文件格式-md，也就是说用对程序员来说简单方便的markdown来编辑网页；一般引入图片的话，需要一个可以在网上访问到的地址，你可以有一些服务器管理，也可以上传到”七牛”（多人推荐）等在线管理的网站，然后加链接即可；"><a href="#博客文件一般均在source-posts下，文件格式-md，也就是说用对程序员来说简单方便的markdown来编辑网页；一般引入图片的话，需要一个可以在网上访问到的地址，你可以有一些服务器管理，也可以上传到”七牛”（多人推荐）等在线管理的网站，然后加链接即可；" class="headerlink" title="博客文件一般均在source_posts下，文件格式.md，也就是说用对程序员来说简单方便的markdown来编辑网页；一般引入图片的话，需要一个可以在网上访问到的地址，你可以有一些服务器管理，也可以上传到”七牛”（多人推荐）等在线管理的网站，然后加链接即可；"></a>博客文件一般均在source_posts下，文件格式.md，也就是说用对程序员来说简单方便的markdown来编辑网页；一般引入图片的话，需要一个可以在网上访问到的地址，你可以有一些服务器管理，也可以上传到”七牛”（多人推荐）等在线管理的网站，然后加链接即可；</h5><h6 id="编辑完，一般在本地预览调试之后，上传："><a href="#编辑完，一般在本地预览调试之后，上传：" class="headerlink" title="编辑完，一般在本地预览调试之后，上传："></a>编辑完，一般在本地预览调试之后，上传：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;title&quot; //新建文章，编辑完执行以下命令</span><br><span class="line">hexo clean //每次重新上传都需要clean一下</span><br><span class="line">hexo g //生成静态文件</span><br><span class="line">hexo s --debug //以debug模式启动，刷新即可看效果。</span><br><span class="line">// hexo s -p 5000 可以更改预览端口，一般用不到</span><br><span class="line">hexo d //部署</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/01/25/windows上hexo搭建GitHub-Page博客/" data-id="cjuzd8ner000m6ot68x7t92hc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li></ul>
 
     </footer>
   </div>
@@ -482,7 +604,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -496,7 +618,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github-Page博客、hexo、git/">Github Page博客、hexo、git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ajax请求json、谷歌json跨域/">ajax请求json、谷歌json跨域</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/canvas/">canvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dataGrid、easy-ui/">dataGrid、easy-ui</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/echarts、常用指令/">echarts、常用指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/formidable、multer、body-parser、nodejs上传文件/">formidable、multer、body-parser、nodejs上传文件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo博客、转移电脑/">hexo博客、转移电脑</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/restful、rest、url与uri、soap与restful/">restful、rest、url与uri、soap与restful</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/svg、在HTML中画数据库物理模型图/">svg、在HTML中画数据库物理模型图</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/textarea自动缩放/">textarea自动缩放</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/thinkPHP3-2、react、ant插件/">thinkPHP3.2、react、ant插件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、axios、代理/">vue、axios、代理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vueRouter、权限、钩子函数/">vue、vueRouter、权限、钩子函数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、vuex/">vue、vuex</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue、页面数据传递、父子组件/">vue、页面数据传递、父子组件</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue基础/">vue基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ztree、常用特性/">ztree、常用特性</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/物理分辨率-逻辑分辨率、rpx-px/">物理分辨率&逻辑分辨率、rpx&px</a></li></ul>
     </div>
   </div>
 
@@ -506,7 +628,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
+      <a href="/tags/Github-Page博客、hexo、git/" style="font-size: 10px;">Github Page博客、hexo、git</a> <a href="/tags/ajax请求json、谷歌json跨域/" style="font-size: 10px;">ajax请求json、谷歌json跨域</a> <a href="/tags/canvas/" style="font-size: 10px;">canvas</a> <a href="/tags/dataGrid、easy-ui/" style="font-size: 10px;">dataGrid、easy-ui</a> <a href="/tags/echarts、常用指令/" style="font-size: 10px;">echarts、常用指令</a> <a href="/tags/formidable、multer、body-parser、nodejs上传文件/" style="font-size: 10px;">formidable、multer、body-parser、nodejs上传文件</a> <a href="/tags/hexo博客、转移电脑/" style="font-size: 10px;">hexo博客、转移电脑</a> <a href="/tags/restful、rest、url与uri、soap与restful/" style="font-size: 10px;">restful、rest、url与uri、soap与restful</a> <a href="/tags/svg、在HTML中画数据库物理模型图/" style="font-size: 10px;">svg、在HTML中画数据库物理模型图</a> <a href="/tags/textarea自动缩放/" style="font-size: 10px;">textarea自动缩放</a> <a href="/tags/thinkPHP3-2、react、ant插件/" style="font-size: 10px;">thinkPHP3.2、react、ant插件</a> <a href="/tags/vue、axios、代理/" style="font-size: 10px;">vue、axios、代理</a> <a href="/tags/vue、vueRouter、权限、钩子函数/" style="font-size: 10px;">vue、vueRouter、权限、钩子函数</a> <a href="/tags/vue、vuex/" style="font-size: 10px;">vue、vuex</a> <a href="/tags/vue、页面数据传递、父子组件/" style="font-size: 10px;">vue、页面数据传递、父子组件</a> <a href="/tags/vue基础/" style="font-size: 10px;">vue基础</a> <a href="/tags/ztree、常用特性/" style="font-size: 10px;">ztree、常用特性</a> <a href="/tags/物理分辨率-逻辑分辨率、rpx-px/" style="font-size: 10px;">物理分辨率&逻辑分辨率、rpx&px</a>
     </div>
   </div>
 
@@ -515,7 +637,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a></li></ul>
     </div>
   </div>
 
@@ -528,23 +650,23 @@
       <ul>
         
           <li>
-            <a href="/2019/04/27/RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
+            <a href="/2019/06/07/19-05-19小程序、2048demo记录/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/让文本框自动适应内容的高度 & 让文本框显示折叠、收放/">让文本框自动适应内容的高度 &amp; 让文本框显示折叠、收放</a>
+            <a href="/2019/06/07/19-05-08未来世界的幸存者/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/04/17/iphone6的750x1334分辨率排版开发APP及小程序的原因/">iphone6的750x1334分辨率排版开发APP及小程序的原因</a>
+            <a href="/2019/06/07/19-06-07vue+express+mongodb电影实战项目/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/svg画数据库物理模型图/">svg画数据库物理模型图</a>
+            <a href="/2019/04/27/19-06-07nodejs下上传文件formidable、multer、body-parser对比/">nodejs下上传文件formidable、multer、body-parser的区别</a>
           </li>
         
           <li>
-            <a href="/2019/04/11/ajax请求本地json文件，谷歌浏览器报跨域错误/">ajax请求本地json文件，谷歌浏览器报跨域错误</a>
+            <a href="/2019/04/27/19-04-27RESTful用法及与SOAP webserver比较/">RESTful用法及与SOAP webserver比较</a>
           </li>
         
       </ul>
